@@ -1,0 +1,186 @@
+.total__bodypage{
+    .body__page__top{
+        padding-top: 75px;
+        background-color: #F6F8FB;
+        .body__page_element_logo{
+            text-align: center;
+            .bodypage__icon{
+                display: initial !important;
+                width: 70px;
+                margin-bottom: 34px;
+                height: 70px;
+            }
+        }
+        .body__page__form{
+            max-width: 512px;
+            height: auto;
+            margin: 0px auto;
+            background: #FFFFFF;
+            box-shadow: 0px 9px 16px rgba(159, 162, 191, 0.18), 0px 2px 2px rgba(159, 162, 191, 0.32);
+            border-radius: 6px;
+            padding: 0px 40px;
+            .form__titleSign{
+                padding-top: 40px;
+                p:nth-child(1){
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 25px;
+                    color: #223354;
+                    margin-bottom: unset !important;
+                }
+                p:nth-child(2){
+                    font-style: normal;
+                    font-weight: 400;
+                    color: #223354;
+                    font-size: 16px;
+                    opacity: 0.5;
+                }
+            }
+            .form__button_subcess{
+                padding: 0px 0px 33px 0px;
+                button{
+                    cursor: pointer;
+                    border: 1px solid #1A75FF;
+                    box-sizing: border-box;
+                    border-radius: 6px;
+                    width: 100%;
+                    height: 38px;
+                    line-height: 32px;
+                    display: flex;
+                    justify-content: center;
+                    background-color: white;
+                    .icon_button_gg{
+                        margin-right: 10px;
+                        width: 24px;
+                        height: 24px;
+                        margin-top: 5px;
+                    }
+                    p{
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 15px;
+                        color: #1A75FF;
+                    }
+                }
+            }
+            .form__or_title{
+                padding: 0px 0px 11px 0px;
+                .form__or_element{
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                    left: 49%;
+                    position: absolute;
+                    p{
+                        margin-bottom: 0px;
+                        position: relative;
+                        padding: 0px 10px;
+                        font-weight: 700;
+                        font-size: 16px;
+                        color: rgba(34, 51, 84, 0.5);
+                        top: -11px;
+                    }
+                }
+            }
+            .form__or_input{
+                margin-top: 21px;
+                .style__input{
+                    margin-bottom: 26px;
+                }
+                .style__password{
+                    margin-bottom: 28px;
+                }
+                .style__input, .style__password{
+                    width: 100%;
+                    height: auto;
+                    padding: 16px 14px;
+                    border: 1px solid rgba(34, 51, 84, 0.5);
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #223354;
+                }
+            }
+            .form__button_submist{
+                margin-top: 34px;
+                padding-bottom: 43px;
+                .form__style_button{
+                    width: 100%;
+                    height: auto;
+                    padding: 10px 0px;
+                    background: #1A75FF;
+                    border-radius: 6px;
+                    font-weight: 700;
+                    font-size: 15px;
+                    color: #FFFFFF;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+            .form__link_signup{
+                padding-bottom: 39px;
+                p{
+                    font-weight: 700;
+                    color: #223354;
+                    font-size: 14px;
+                    letter-spacing: 0.09px;
+                }
+            }
+        }
+    }
+    .form__footer_page{
+        padding-top: 39px;
+        margin-top: 74px;
+        width: 100%;
+        height: 265px;
+        background: #FFFFFF;
+        box-shadow: 0px 9px 16px rgba(159, 162, 191, 0.18), 0px 2px 2px rgba(159, 162, 191, 0.32);
+        .form__box_icon_autho{
+            display: flex;
+            justify-content: center;
+            .footer__icon_page{
+                margin: 0px 24px;
+                text-align: center;
+                img{
+                    border-radius: 10px;
+                    padding: 18px 33px;
+                    background: rgba(34, 51, 84, 0.2);
+                    height: auto;
+                    width: auto;
+                }
+            }
+        }
+        .form__box_notication_footer{
+            margin-top: 38px;
+            display: flex;
+            justify-content: center;
+            .form__box_notication{
+                padding: 9px 10px 0px 10px;
+                display: flex;
+                width: max-content;
+                height: 36px;
+                background: #FFF6E8;
+                border-radius: 6px;
+                .form__box_notication__text{
+                    margin-left: 10px;
+                    margin-bottom: 0px;
+                    color: #FFA31A;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 15px;
+                }
+                .box_notication_close{
+                    margin-top: 4px;
+                    color: #FFA31A;
+                    font-weight: bold;
+                    font-size: 14px;
+                    margin-left: 28px;
+                    cursor: pointer;
+                    line-height: 15px;
+                }
+            }
+        }
+    }
+    
+}
