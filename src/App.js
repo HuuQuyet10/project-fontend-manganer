@@ -1,21 +1,13 @@
-// routes
-import Router from './routes';
-// theme
-import ThemeConfig from './theme';
-import GlobalStyles from './theme/globalStyles';
-// components
-import ScrollToTop from './components/ScrollToTop';
-import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
+import * as React from "react";
+import Routers from "./routes";
 
-// ----------------------------------------------------------------------
-
-export default function App() {
+function App() {
   return (
-    <ThemeConfig>
-      <ScrollToTop />
-      <GlobalStyles />
-      <BaseOptionChartStyle />
-      <Router />
-    </ThemeConfig>
+    <>
+    <h1>header</h1>
+    <Routers />
+    </>
   );
 }
+
+export default App;
