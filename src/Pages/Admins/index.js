@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 const Admins = () => {
     let navigate = useNavigate();
     const logoutPage = () => {
-        localStorage.removeItem("accsessToken");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshtoken");
         navigate("/");
     }
     return (
