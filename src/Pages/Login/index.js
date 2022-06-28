@@ -15,18 +15,18 @@ const Login = () => {
     const checkPass = (e) => {
         setPass(e.target.value)
     }
-    const userState = useSelector((store) => store.user);
     const hanldleSubmit = async () => {
         const bodyParamster = {
             'mail': mail,
             'password': md5(pass)
         };
         dispatch(getUsers(bodyParamster));
-        if (userState.users.code === 200) {
-            navigate("/dashboard")
-        } else {
-            console.log(userState.users.message)
-        }
+    }
+    const userState = useSelector((store) => store.user);
+    if (userState.user.code === 200) {
+        navigate("/dashboard")
+    } else {
+        console.log(userState.user.message) 
     }
     return (
         <div>

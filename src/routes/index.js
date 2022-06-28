@@ -5,6 +5,7 @@ import UsersPage from "../Pages/Users";
 import PrivateOutltet from "../routes/RouterWithPath";
 import Admins from "../Pages/Admins";
 import PageNotFound from "../Pages/PageNotFound";
+import Signup from "../Pages/Signup";
 
 
 const Routers = () => {
@@ -13,7 +14,7 @@ const Routers = () => {
       {/* router public */}
       <Route  path="/" element={<Login />} />
       <Route  path="/login" element={<Login />} />
-
+      <Route path="/signup" element={<Signup /> } />
 
       {/* router private  */}
       <Route element={<PrivateOutltet />}>
@@ -21,6 +22,9 @@ const Routers = () => {
       </Route>
       <Route element={<PrivateOutltet />}>
         <Route path="dashboard" element={<Admins />} />
+      </Route>
+      <Route element={<PrivateOutltet />}>
+        <Route path="admin" element={<Admins />} />
       </Route>
 
 

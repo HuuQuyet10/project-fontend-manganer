@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    DOMAIN_API: "http://localhost:8000",
+    DOMAIN_API: "http://localhost:5000",
     PARAMS_USER: {
         REGISTER: "/api/v1/user/register",
         LOGIN: "/api/v1/user/login",
