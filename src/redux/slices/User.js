@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import constanDomain from "../../configs/constanDomain";
 import clientUtils from "../../utils/client-utils";
 import { useNavigate } from "react-router-dom";
+import { notification } from 'antd';
 import axios from "axios";
 
 const initialState = {
@@ -18,7 +19,13 @@ export const getUsers = createAsyncThunk("users/login", async (bodyParamster) =>
         localStorage.setItem("accessToken", dataResposive.accessToken);
         localStorage.setItem("refreshtoken", dataResposive.refreshtoken);
     } else (
-        console.log(`lỗi: ${dataResposive.message}` )
+        notification.open({
+            message: "Tiêu đề: bị lỗi",
+            description: dataResposive.message,
+            // onClick: () => {
+            //   console.log('Notification Clicked!');
+            // },
+        })
     )
     return responsive.data;
 })

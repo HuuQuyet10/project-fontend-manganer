@@ -11,6 +11,10 @@ import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
 
 
+// CSS LIB
+import 'antd/dist/antd.css';
+
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import md5 from 'md5';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpUser } from '../../redux/slices/User';
+import { signUpUser } from '../../../redux/slices/User';
 
 const Signup = () => {
     const dispatch = useDispatch();

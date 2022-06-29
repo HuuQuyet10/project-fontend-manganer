@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route, useNavigate, Outlet, Navigate } from "react-router-dom";
-import Login from "../Pages/Login";
-import UsersPage from "../Pages/Users";
+import Login from "../Pages/Container/Login";
+import UsersPage from "../Pages/Container/Users";
 import PrivateOutltet from "../routes/RouterWithPath";
-import Admins from "../Pages/Admins";
-import PageNotFound from "../Pages/PageNotFound";
-import Signup from "../Pages/Signup";
+import Admins from "../Pages/Container/Admins";
+import PageNotFound from "../Pages/Container/PageNotFound";
+import Signup from "../Pages/Container/Signup";
 
 
 const Routers = () => {
@@ -18,13 +18,13 @@ const Routers = () => {
 
       {/* router private  */}
       <Route element={<PrivateOutltet />}>
-        <Route path="user-details" element={<UsersPage />} />
+        <Route path="/user-details" element={<UsersPage />} />
       </Route>
       <Route element={<PrivateOutltet />}>
-        <Route path="dashboard" element={<Admins />} />
+        <Route path="/dashboard" element={<Admins />} />
       </Route>
       <Route element={<PrivateOutltet />}>
-        <Route path="admin" element={<Admins />} />
+        <Route path="/admin" element={<Admins />} />
       </Route>
 
 

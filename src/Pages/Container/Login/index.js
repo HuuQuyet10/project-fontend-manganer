@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import md5 from 'md5';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from "../../redux/slices/User";
+import { getUsers } from "../../../redux/slices/User";
+import clientUtils from '../../../utils/client-utils';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -25,9 +26,12 @@ const Login = () => {
     const userState = useSelector((store) => store.user);
     if (userState.user.code === 200) {
         navigate("/dashboard")
-    } else {
-        console.log(userState.user.message) 
     }
+    useEffect(() => {
+        if(clientUtils.auth) {
+            navigate("/dashboard");
+        }
+    }, []);
     return (
         <div>
             <h1>login</h1>
