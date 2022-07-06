@@ -25,11 +25,11 @@ const Login = () => {
     }
     const userState = useSelector((store) => store.user);
     if (userState.user.code === 200) {
-        navigate("/dashboard")
+        navigate("/admin")
     }
     useEffect(() => {
         if(clientUtils.auth) {
-            navigate("/dashboard");
+            navigate("/admin");
         }
     }, []);
     return (

@@ -20,9 +20,9 @@ const Routers = () => {
       <Route element={<PrivateOutltet />}>
         <Route path="/user-details" element={<UsersPage />} />
       </Route>
-      <Route element={<PrivateOutltet />}>
+      {/* <Route element={<PrivateOutltet />}>
         <Route path="/dashboard" element={<Admins />} />
-      </Route>
+      </Route> */}
       <Route element={<PrivateOutltet />}>
         <Route path="/admin" element={<Admins />} />
       </Route>
