@@ -30,6 +30,7 @@ const items2 = [
 
 const SiderBar = () => {
   const location = useLocation();
+  console.log(location, "kkkkkkkkkkkkkkkkkkkkkkkk")
   return (
     <>
       <Sider
@@ -45,7 +46,7 @@ const SiderBar = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[location.pathname]}
           items={items2}
         />
       </Sider>
