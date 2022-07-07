@@ -7,14 +7,13 @@ import Admins from "../Pages/Container/Admins";
 import PageNotFound from "../Pages/Container/PageNotFound";
 import Signup from "../Pages/Container/Signup";
 
-
 const Routers = () => {
   return (
     <Routes>
       {/* router public */}
-      <Route  path="/" element={<Login />} />
-      <Route  path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup /> } />
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
 
       {/* router private  */}
       <Route element={<PrivateOutltet />}>
@@ -27,11 +26,10 @@ const Routers = () => {
         <Route path="/admin" element={<Admins />} />
       </Route>
 
-
       {/* page not found */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
-}
+};
 
 export default Routers;

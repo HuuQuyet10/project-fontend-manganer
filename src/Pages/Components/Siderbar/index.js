@@ -18,19 +18,19 @@ const { Header, Content, Footer, Sider } = Layout;
 const items2 = [
   {
     key: "1",
-    "icon": React.createElement(UserOutlined),
+    icon: React.createElement(UserOutlined),
     label: <Link to="/admin">Admin</Link>,
   },
   {
     key: "2",
-    "icon": React.createElement(UserOutlined),
+    icon: React.createElement(UserOutlined),
     label: <Link to="/user-details">user</Link>,
   },
 ];
 
 const SiderBar = () => {
   const location = useLocation();
-  console.log(location, "kkkkkkkkkkkkkkkkkkkkkkkk")
+  console.log(location, "kkkkkkkkkkkkkkkkkkkkkkkk");
   return (
     <>
       <Sider
@@ -46,7 +46,7 @@ const SiderBar = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[location.pathname]}
+          // defaultSelectedKeys={[location.pathname]}
           items={items2}
         />
       </Sider>
