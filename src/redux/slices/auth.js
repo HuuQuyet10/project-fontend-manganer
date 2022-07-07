@@ -8,7 +8,7 @@ const initialState = {
     try {
       let data = localStorage.getItem("accessToken") || "";
       if (data) {
-        clientUtils.auth = "Bearer " + data;
+        clientUtils.auth = data;
         return data;
       }
     } catch (error) {

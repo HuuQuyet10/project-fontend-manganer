@@ -14,9 +14,7 @@ const initialState = {
 export const getUsers = createAsyncThunk(
   "users/login",
   async (bodyParamster) => {
-    const dataUrl = `${
-      constanDomain.DOMAIN_API + constanDomain.PARAMS_USER.LOGIN
-    }`;
+    const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_USER.LOGIN}`;
     const responsive = await axios.post(dataUrl, bodyParamster);
     const dataResposive = responsive.data;
     if (dataResposive.code === 200) {
@@ -37,9 +35,7 @@ export const getUsers = createAsyncThunk(
 export const signUpUser = createAsyncThunk(
   "user/signup",
   async (bodyParamster) => {
-    const dataUrl = `${
-      constanDomain.DOMAIN_API + constanDomain.PARAMS_USER.REGISTER
-    }`;
+    const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_USER.REGISTER}`;
     const responsive = await axios.post(dataUrl, bodyParamster);
     return responsive.data;
   }

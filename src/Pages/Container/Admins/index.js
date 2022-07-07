@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
+import { getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 
 const { Content } = Layout;
 
 const Admins = () => {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const logoutPage = () => {
     localStorage.clear();
@@ -16,6 +18,9 @@ const Admins = () => {
   };
   const states = useSelector((store) => store);
   console.log(states, "kkkkkkkk");
+  useEffect(() => {
+    dispatch(getPost());
+  }, []);
   return (
     <Layout hasSider>
       <SiderBar />
@@ -34,7 +39,7 @@ const Admins = () => {
         >
           <p>admin</p>
         </Content>
-        <FooterApp />
+        {/* <FooterApp /> */}
       </Layout>
     </Layout>
   );
