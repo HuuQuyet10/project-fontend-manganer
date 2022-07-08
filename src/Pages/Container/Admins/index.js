@@ -7,13 +7,14 @@ import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
 import { getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
+import "./styles.scss";
 
 const { Content } = Layout;
 
 const Admins = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const [dataTables, setDataTables] = useState([]);
+  const [bordered, setBordered] = useState(true);
   const logoutPage = () => {
     localStorage.clear();
     navigate("/");
@@ -120,6 +121,7 @@ const Admins = () => {
       key: 'createdAt',
     }
   ]
+  const tableProps = {bordered}
   return (
     <Layout hasSider>
       <SiderBar />
@@ -139,7 +141,7 @@ const Admins = () => {
           <>
             {
               states.post.loading === false ? <p>Loading...</p> : 
-              <Table dataSource={states.post.post} columns={columns} />
+              <Table dataSource={states.post.post} columns={columns} {...tableProps}/>
             }
             {/* <p>kkkkkkkkk</p> */}
           </>
