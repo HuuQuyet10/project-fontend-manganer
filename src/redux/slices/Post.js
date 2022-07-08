@@ -13,25 +13,14 @@ const initialState = {
 
 export const getPost = createAsyncThunk(
     "post/getPost",
-    async (thunkApi) => {
+    async () => {
         const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.GET_POST}`;
-        return axios.get(dataUrl, {
+        const responsive = await axios.get(dataUrl, {
             headers: {
                 Authorization: clientUtils.auth
             }
-        })
-        .then(responsive => {
-            return responsive.data
-        })
-        .catch(error => {
-            notification.open({
-                message: "Tiêu đề: bị lỗi",
-                description: error,
-                // onClick: () => {
-                //   console.log('Notification Clicked!');
-                // },
-              });
-        })
+        });
+        return responsive.data;
     }
 )
 
@@ -42,24 +31,15 @@ const postSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getPost.pending, (state, action) => {
-                state.loading = true;
+                state.loading = false;
             })
             .addCase(getPost.fulfilled, (state, action) => {
-                state.loading = false;
+                state.loading = true;
                 state.post = action.payload;
             })
-            .addCase(getPost.rejected, (state, {payload}) => {
-                // debugger
+            .addCase(getPost.rejected, (state, action) => {
                 state.loading = false;
-                // state.errorMessage = `Không thể gọi được dữ liệu, vui lòng kiểm tra lại`;
-                switch (payload?.status) {
-                    case 401:
-                        state.errorMessage = `Access denied`; break;
-                    case 403:
-                        state.errorMessage = `Forbidden`; break;
-                    default:
-                        state.errorMessage = `none`
-                }
+                state.errorMessage = action.error.message || `Không thể gọi được dữ liệu, vui lòng kiểm tra lại`;
             });
     }
 });

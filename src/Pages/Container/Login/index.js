@@ -26,6 +26,9 @@ const Login = () => {
   const userState = useSelector((store) => store.user);
   if (userState.user.code === 200) {
     navigate("/admin");
+    window.location.reload(false);
+  } else {
+    
   }
   useEffect(() => {
     if (clientUtils.auth) {

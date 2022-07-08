@@ -15,7 +15,7 @@ const User = () => {
     navigate("/");
   };
   const states = useSelector((store) => store);
-  console.log(states, "kkkkkkkk");
+  // console.log(states, "kkkkkkkk");
   return (
     <Layout hasSider>
       <SiderBar />

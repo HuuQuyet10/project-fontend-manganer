@@ -25,9 +25,7 @@ const Signup = () => {
       password: pass,
       user: userName,
     };
-    // console.log(bodyParamster)
     dispatch(signUpUser(bodyParamster));
-    console.log(userStates.user);
   };
   return (
     <div>
