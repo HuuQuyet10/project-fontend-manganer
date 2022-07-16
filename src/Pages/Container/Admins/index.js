@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Form, Radio, Space, Switch, Table } from "antd";
+import { Layout, Button, Table, Modal, Input, Form } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const { Content } = Layout;
 const Admins = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
   const logoutPage = () => {
     localStorage.clear();
@@ -28,6 +29,22 @@ const Admins = () => {
     window.location.reload(false);
   } else {
     console.log(states.post);
+  }
+  const handlebutton = () => {
+    setIsModalVisible(true);
+  }
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  // handle delete item
+  const handleDeleteItem = () => {
+    console.log("delete")
+  }
+
+  // edit item 
+  const handleEditItem = () => {
+    console.log("edit")
   }
   const columns = [
     {
@@ -119,9 +136,26 @@ const Admins = () => {
       title: 'Ngày tạo đơn',
       dataIndex: 'createdAt',
       key: 'createdAt',
+    },
+    {
+      title: 'Update',
+      dataIndex: 'createAndUpdate',
+      key: 'createAndUpdate',
+      width: 120,
+      render: () => {
+        return (
+          <div>
+            <Button onClick={handleEditItem} type="primary">Update</Button>
+            <Button onClick={handleDeleteItem} type="error">Delete</Button>
+          </div>
+        )
+      }
     }
   ]
-  const tableProps = {bordered}
+  const tableProps = { bordered };
+  const handleOk = (values) => {
+    setIsModalVisible(false);
+  };
   return (
     <Layout hasSider>
       <SiderBar />
@@ -138,10 +172,101 @@ const Admins = () => {
             overflow: "initial",
           }}
         >
+          <div className="styles_button_aline">
+            <Button onClick={handlebutton}>Thêm mới</Button>
+          </div>
+          <div>
+            <Modal
+              title={[
+                <h2>THÊM MỚI</h2>
+              ]}
+              visible={isModalVisible}
+              onCancel={handleCancel}
+              width={1000}
+              footer={[
+                <>
+                  <Button type="danger" key="back" onClick={() => handleCancel()}>Hủy</Button>
+                  <Button key="submit" type="primary" htmlType="submit">Lưu </Button>
+                </>
+              ]}
+            // onOk={handleOk}
+            >
+              <div className="style-form-addnew">
+                <div className="content-one">
+                  <div>
+                    <label>Địa chỉ khách hàng</label>
+                    <Input/>
+                  </div>
+                  <div>
+                    <label>Địa chỉ người chuyển tiền</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Email khách</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Giá tiền</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Mã đơn hàng</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Ngày tháng</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Phương thức thanh toán</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Quà tặng</label>
+                    <Input />
+                  </div>
+                </div>
+                <div className="content-two">
+                  <div>
+                    <label>Phone khách</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Phone người chuyển tiền</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tên đơn hàng</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tên khách hàng</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tên người chuyển tiền</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tên nhân viên sale</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tên quản lý</label>
+                    <Input />
+                  </div>
+                  <div>
+                    <label>Tracking URL</label>
+                    <Input />
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
           <>
             {
-              states.post.loading === false ? <p>Loading...</p> : 
-              <Table dataSource={states.post.post} columns={columns} {...tableProps}/>
+              states.post.loading === false ? <p>Loading...</p> :
+                <Table dataSource={states.post.post} columns={columns} {...tableProps} />
             }
             {/* <p>kkkkkkkkk</p> */}
           </>

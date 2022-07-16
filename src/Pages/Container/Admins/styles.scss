@@ -1,3 +1,28 @@
 .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table, .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table{
     table-layout: fixed !important;
 }
+.styles_button_aline{
+    text-align: right;
+    margin-bottom: 10px;
+    button{
+        border-radius: 10px !important;
+        background-color: lightgreen;
+        color: blue;
+    }
+}
+.style-form-addnew{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    .content-one, .content-two{
+        padding: 0px 15px;
+        div{
+            margin-bottom: 15px;
+            label{
+                font-weight: bold;
+            }
+            input{
+                margin-top: 4px;
+            }
+        }
+    }
+}
