@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Layout, Button, Table, Modal, Input, Form } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
@@ -16,6 +17,22 @@ const Admins = () => {
   let navigate = useNavigate();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
+  const [MaDonHang, setMaDonHang] = useState();
+  const [NgayThang, setNgayThang] = useState();
+  const [TenKhachHang, setTenKhachHang] = useState();
+  const [SdtKhachHang, setSdtKhachHang] = useState();
+  const [EmailKhachHang, setEmailKhachHang] = useState();
+  const [DiaChiKhachHang, setDiaChiKhachHang] = useState();
+  const [TenNguoiChuyenTien, setTenNguoiChuyenTien] = useState();
+  const [SdtNguoiChuyenTien, setSdtNguoiChuyenTien] = useState();
+  const [DiaChiNguoiChuyenTien, setDiaChiNguoiChuyenTien] = useState();
+  const [PhuongThucThanhToan, setPhuongThucThanhToan] = useState();
+  const [TenQuanLy, setTenQuanLy] = useState();
+  const [TenNhanVienSale, setTenNhanVienSale] = useState();
+  const [TenDonHang, setTenDonHang] = useState();
+  const [QuaTang, setQuaTang] = useState();
+  const [GiaTien, setGiaTien] = useState();
+  const [TrackingURL, setTrackingURL] = useState();
   const logoutPage = () => {
     localStorage.clear();
     navigate("/");
@@ -28,7 +45,7 @@ const Admins = () => {
     localStorage.clear()
     window.location.reload(false);
   } else {
-    console.log(states.post);
+    // console.log(states.post);
   }
   const handlebutton = () => {
     setIsModalVisible(true);
@@ -156,6 +173,16 @@ const Admins = () => {
   const handleOk = (values) => {
     setIsModalVisible(false);
   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  const onSubmit = (e) => {
+    console.log(e);
+    setIsModalVisible(false);
+    document.getElementById("create-course-form").reset();
+  };
   return (
     <Layout hasSider>
       <SiderBar />
@@ -183,84 +210,123 @@ const Admins = () => {
               visible={isModalVisible}
               onCancel={handleCancel}
               width={1000}
-              footer={[
-                <>
-                  <Button type="danger" key="back" onClick={() => handleCancel()}>Hủy</Button>
-                  <Button key="submit" type="primary" htmlType="submit">Lưu </Button>
-                </>
-              ]}
+              footer="null"
+              // footer={[
+              //   <>
+              //     <Button type="danger" key="back" onClick={() => handleCancel()}>Hủy</Button>
+              //     <Button key="submit"  type="submit">Lưu </Button>
+              //   </>
+              // ]}
             // onOk={handleOk}
             >
-              <div className="style-form-addnew">
-                <div className="content-one">
-                  <div>
-                    <label>Địa chỉ khách hàng</label>
-                    <Input/>
+              <form onSubmit={handleSubmit(onSubmit)} id="create-course-form">
+                <div className="style-form-addnew">
+                  <div className="content-one">
+                    <div>
+                      <label>Địa chỉ khách hàng</label>
+                      <br></br>
+                      <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.DiaChiKhachHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Địa chỉ người chuyển tiền</label>
+                      <br></br>
+                      <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
+                      {errors.DiaChiNguoiChuyenTien && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Email khách</label>
+                      <br></br>
+                      <input {...register("EmailKhachHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.EmailKhachHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Giá tiền</label>
+                      <br></br>
+                      <input {...register("GiaTien", { required: true })} className="styles__input_newinfor"/>
+                      {errors.GiaTien && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Mã đơn hàng</label>
+                      <br></br>
+                      <input {...register("MaDonHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.MaDonHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Ngày tháng</label>
+                      <br></br>
+                      <input {...register("NgayThang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.NgayThang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Phương thức thanh toán</label>
+                      <br></br>
+                      <input {...register("PhuongThucThanhToan", { required: true })} className="styles__input_newinfor"/>
+                      {errors.PhuongThucThanhToan && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Quà tặng</label>
+                      <br></br>
+                      <input {...register("QuaTang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.QuaTang && <p>This field is required</p>}
+                    </div>
                   </div>
-                  <div>
-                    <label>Địa chỉ người chuyển tiền</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Email khách</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Giá tiền</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Mã đơn hàng</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Ngày tháng</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Phương thức thanh toán</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Quà tặng</label>
-                    <Input />
+                  <div className="content-two">
+                    <div>
+                      <label>Phone khách</label>
+                      <br></br>
+                      <input {...register("SdtKhachHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.SdtKhachHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Phone người chuyển tiền</label>
+                      <br></br>
+                      <input {...register("SdtNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
+                      {errors.SdtNguoiChuyenTien && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tên đơn hàng</label>
+                      <br></br>
+                      <input {...register("TenDonHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TenDonHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tên khách hàng</label>
+                      <br></br>
+                      <input {...register("TenKhachHang", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TenKhachHang && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tên người chuyển tiền</label>
+                      <br></br>
+                      <input {...register("TenNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TenNguoiChuyenTien && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tên nhân viên sale</label>
+                      <br></br>
+                      <input {...register("TenNhanVienSale", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TenNhanVienSale && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tên quản lý</label>
+                      <br></br>
+                      <input {...register("TenQuanLy", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TenQuanLy && <p>This field is required</p>}
+                    </div>
+                    <div>
+                      <label>Tracking URL</label>
+                      <br></br>
+                      <input {...register("TrackingURL", { required: true })} className="styles__input_newinfor"/>
+                      {errors.TrackingURL && <p>This field is required</p>}
+                    </div>
                   </div>
                 </div>
-                <div className="content-two">
-                  <div>
-                    <label>Phone khách</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Phone người chuyển tiền</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tên đơn hàng</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tên khách hàng</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tên người chuyển tiền</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tên nhân viên sale</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tên quản lý</label>
-                    <Input />
-                  </div>
-                  <div>
-                    <label>Tracking URL</label>
-                    <Input />
-                  </div>
+                <div>
+                  <button type="submit" value="Submit">Submit</button>
+                  <button>Huỷ</button>
                 </div>
-              </div>
+              </form>
             </Modal>
           </div>
           <>
