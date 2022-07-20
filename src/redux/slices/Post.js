@@ -24,6 +24,46 @@ export const getPost = createAsyncThunk(
     }
 )
 
+export const createPost = createAsyncThunk(
+    "post/createPost",
+    async (bodyParamster) => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.NEW_POST}`;
+        try {
+            const responsive = await axios.post(dataUrl, bodyParamster, {
+                headers: {
+                    Authorization: clientUtils.auth
+                }
+            });
+            const checkData = responsive.data;
+            if (checkData.code == 200) {
+                notification.open({
+                    message: "Tiêu đề: Thành công",
+                    description: checkData.status,
+                    // onClick: () => {
+                    //   console.log('Notification Clicked!');
+                    // },
+                  });
+            }
+            return checkData;   
+        } catch (err) {
+            const customError = {
+                name: "Error Axios!!",
+                message: err.response.statusText,
+                data: err.response.data.error.message // serializable
+            };
+            console.log(customError, "Error Axios!!");
+            notification.open({
+                message: "Tiêu đề: Thất bại",
+                description: customError.data,
+                // onClick: () => {
+                //   console.log('Notification Clicked!');
+                // },
+            });
+            document.getElementById("create-course-form").reset();
+        }
+    }
+)
+
 
 const postSlice = createSlice({
     name: "post",
@@ -40,7 +80,14 @@ const postSlice = createSlice({
             .addCase(getPost.rejected, (state, action) => {
                 state.loading = false;
                 state.errorMessage = action.error.message || `Không thể gọi được dữ liệu, vui lòng kiểm tra lại`;
-            });
+            })
+
+            // redux của thêm mới post 
+            .addCase(createPost.rejected, (state, action) => {
+                state.loading = false;
+                console.log(action, "kkkkkkkkkkkkkkk--------------------------")
+                // state.errorMessage = action.error.message || `Không thể thêm dữ liệu`
+            })
     }
 });
 

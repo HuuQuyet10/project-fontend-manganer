@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Button, Table, Modal, Input, Form } from "antd";
+import { Layout, Button, Table, Modal, Input, Form, Pagination } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
-import { getPost } from "../../../redux/slices/Post";
+import { createPost, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import "./styles.scss";
 
@@ -41,6 +41,7 @@ const Admins = () => {
     dispatch(getPost());
   }, []);
   const states = useSelector((store) => store);
+  console.log(states, "kkkkkkkkkkkkkkkkkkkkkkk")
   if (states.post.errorMessage === "Request failed with status code 401") {
     localStorage.clear()
     window.location.reload(false);
@@ -179,9 +180,11 @@ const Admins = () => {
     formState: { errors }
   } = useForm();
   const onSubmit = (e) => {
-    console.log(e);
+    // console.log(e, "datatesstkkkkkkkkkkkkkk");
+    const bodyParamster = e;
+    dispatch(createPost(bodyParamster));
     setIsModalVisible(false);
-    document.getElementById("create-course-form").reset();
+    // document.getElementById("create-course-form").reset();
   };
   return (
     <Layout hasSider>
@@ -332,9 +335,9 @@ const Admins = () => {
           <>
             {
               states.post.loading === false ? <p>Loading...</p> :
-                <Table dataSource={states.post.post} columns={columns} {...tableProps} />
+                <Table dataSource={states.post.post} columns={columns} {...tableProps} pagination={false}/>
             }
-            {/* <p>kkkkkkkkk</p> */}
+            <div><Pagination defaultCurrent={3} total={30}/></div>
           </>
         </Content>
         {/* <FooterApp /> */}
