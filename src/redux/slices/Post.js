@@ -8,11 +8,25 @@ import axios from "axios";
 const initialState = {
     loading: false,
     post: [],
+    panigatePost: [],
     errorMessage: null
 };
 
 export const getPost = createAsyncThunk(
     "post/getPost",
+    async (bodyParamster) => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.GET_POST + `?page=${bodyParamster}&size=10`}`;
+        const responsive = await axios.get(dataUrl, {
+            headers: {
+                Authorization: clientUtils.auth
+            }
+        });
+        return responsive.data;
+    }
+)
+
+export const getPanigate = createAsyncThunk(
+    "post/getPanigate",
     async () => {
         const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.GET_POST}`;
         const responsive = await axios.get(dataUrl, {
@@ -66,7 +80,7 @@ export const createPost = createAsyncThunk(
 
 
 const postSlice = createSlice({
-    name: "post",
+    name: "post" || "panigatePost",
     initialState,
     extraReducers: (builder) => {
         builder
@@ -77,6 +91,10 @@ const postSlice = createSlice({
                 state.loading = true;
                 state.post = action.payload;
             })
+            .addCase(getPanigate.fulfilled, (state, action) => {
+                state.loading = true;
+                state.panigatePost = action.payload;
+            })
             .addCase(getPost.rejected, (state, action) => {
                 state.loading = false;
                 state.errorMessage = action.error.message || `Không thể gọi được dữ liệu, vui lòng kiểm tra lại`;
@@ -85,7 +103,6 @@ const postSlice = createSlice({
             // redux của thêm mới post 
             .addCase(createPost.rejected, (state, action) => {
                 state.loading = false;
-                console.log(action, "kkkkkkkkkkkkkkk--------------------------")
                 // state.errorMessage = action.error.message || `Không thể thêm dữ liệu`
             })
     }

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
-import { createPost, getPost } from "../../../redux/slices/Post";
+import { createPost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import "./styles.scss";
 
@@ -17,36 +17,21 @@ const Admins = () => {
   let navigate = useNavigate();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
-  const [MaDonHang, setMaDonHang] = useState();
-  const [NgayThang, setNgayThang] = useState();
-  const [TenKhachHang, setTenKhachHang] = useState();
-  const [SdtKhachHang, setSdtKhachHang] = useState();
-  const [EmailKhachHang, setEmailKhachHang] = useState();
-  const [DiaChiKhachHang, setDiaChiKhachHang] = useState();
-  const [TenNguoiChuyenTien, setTenNguoiChuyenTien] = useState();
-  const [SdtNguoiChuyenTien, setSdtNguoiChuyenTien] = useState();
-  const [DiaChiNguoiChuyenTien, setDiaChiNguoiChuyenTien] = useState();
-  const [PhuongThucThanhToan, setPhuongThucThanhToan] = useState();
-  const [TenQuanLy, setTenQuanLy] = useState();
-  const [TenNhanVienSale, setTenNhanVienSale] = useState();
-  const [TenDonHang, setTenDonHang] = useState();
-  const [QuaTang, setQuaTang] = useState();
-  const [GiaTien, setGiaTien] = useState();
-  const [TrackingURL, setTrackingURL] = useState();
+  const [paginationPage, setPaginationPage] = useState(1);
   const logoutPage = () => {
     localStorage.clear();
     navigate("/");
   };
   useEffect(() => {
-    dispatch(getPost());
+    const bodyParamster = 1;
+    dispatch(getPost(bodyParamster));
+    dispatch(getPanigate());
   }, []);
   const states = useSelector((store) => store);
-  console.log(states, "kkkkkkkkkkkkkkkkkkkkkkk")
   if (states.post.errorMessage === "Request failed with status code 401") {
     localStorage.clear()
     window.location.reload(false);
   } else {
-    // console.log(states.post);
   }
   const handlebutton = () => {
     setIsModalVisible(true);
@@ -61,8 +46,8 @@ const Admins = () => {
   }
 
   // edit item 
-  const handleEditItem = () => {
-    console.log("edit")
+  const handleEditItem = (e) => {
+    console.log(e)
   }
   const columns = [
     {
@@ -160,10 +145,12 @@ const Admins = () => {
       dataIndex: 'createAndUpdate',
       key: 'createAndUpdate',
       width: 120,
-      render: () => {
+      render: (item, record) => {
         return (
           <div>
-            <Button onClick={handleEditItem} type="primary">Update</Button>
+            <Button onClick={(e) => {
+              handleEditItem(record._id)
+            }} type="primary">Update</Button>
             <Button onClick={handleDeleteItem} type="error">Delete</Button>
           </div>
         )
@@ -180,11 +167,16 @@ const Admins = () => {
     formState: { errors }
   } = useForm();
   const onSubmit = (e) => {
-    // console.log(e, "datatesstkkkkkkkkkkkkkk");
     const bodyParamster = e;
     dispatch(createPost(bodyParamster));
     setIsModalVisible(false);
+    dispatch(getPost());
     // document.getElementById("create-course-form").reset();
+  };
+  const checkOnclickPa = (e) => {
+    const bodyParamster = e;
+    setPaginationPage(e)
+    dispatch(getPost(bodyParamster));
   };
   return (
     <Layout hasSider>
@@ -334,10 +326,11 @@ const Admins = () => {
           </div>
           <>
             {
-              states.post.loading === false ? <p>Loading...</p> :
+              states.post.loading === false ? <p>Loading...</p> : <>
                 <Table dataSource={states.post.post} columns={columns} {...tableProps} pagination={false}/>
+                <div><Pagination defaultCurrent={paginationPage} total={states.post.panigatePost.length} onChange={checkOnclickPa}/></div>
+              </>
             }
-            <div><Pagination defaultCurrent={3} total={30}/></div>
           </>
         </Content>
         {/* <FooterApp /> */}
