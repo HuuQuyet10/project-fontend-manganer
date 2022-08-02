@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
-import { createPost, getPanigate, getPost } from "../../../redux/slices/Post";
+import { createPost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import "./styles.scss";
 
@@ -28,6 +28,7 @@ const Admins = () => {
     dispatch(getPanigate());
   }, []);
   const states = useSelector((store) => store);
+  console.log(states)
   if (states.post.errorMessage === "Request failed with status code 401") {
     localStorage.clear()
     window.location.reload(false);
@@ -47,7 +48,8 @@ const Admins = () => {
 
   // edit item 
   const handleEditItem = (e) => {
-    console.log(e)
+    let paramsId = e;
+    dispatch(getOnePost(paramsId))
   }
   const columns = [
     {

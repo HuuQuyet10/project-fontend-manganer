@@ -12,6 +12,8 @@ const initialState = {
     errorMessage: null
 };
 
+
+// CALL ALL POST
 export const getPost = createAsyncThunk(
     "post/getPost",
     async (bodyParamster) => {
@@ -22,6 +24,22 @@ export const getPost = createAsyncThunk(
             }
         });
         return responsive.data;
+    }
+)
+
+
+// CALL ONE POST
+export const getOnePost = createAsyncThunk(
+    "post/getOnePost",
+    async (paramsId) => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.GET_POST + `/${paramsId}`}`;
+        const response = await axios.get(dataUrl, {
+            headers: {
+                Authorization: clientUtils.auth
+            }
+        });
+        console.log(response.data, "kkkkkkss")
+        return response.data;
     }
 )
 
@@ -78,7 +96,18 @@ export const createPost = createAsyncThunk(
     }
 )
 
-
+// export const deletePost = () => createAsyncThunk(
+//     "post/deletePost",
+//     async () => {
+//         const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.DELETE_POST}`;
+//     }
+// )
+export const editPost = () => createAsyncThunk(
+    "post/editPost",
+    async () => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.NEW_POST}`;
+    }
+)
 const postSlice = createSlice({
     name: "post" || "panigatePost",
     initialState,
