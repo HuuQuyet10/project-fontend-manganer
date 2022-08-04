@@ -27,8 +27,12 @@ const Admins = () => {
     dispatch(getPost(bodyParamster));
     dispatch(getPanigate());
   }, []);
+
+
   const states = useSelector((store) => store);
   console.log(states)
+
+  
   if (states.post.errorMessage === "Request failed with status code 401") {
     localStorage.clear()
     window.location.reload(false);
@@ -50,6 +54,7 @@ const Admins = () => {
   const handleEditItem = (e) => {
     let paramsId = e;
     dispatch(getOnePost(paramsId))
+    setIsModalVisible(true);
   }
   const columns = [
     {
@@ -216,19 +221,23 @@ const Admins = () => {
               // ]}
             // onOk={handleOk}
             >
-              <form onSubmit={handleSubmit(onSubmit)} id="create-course-form">
+              {/* {
+                console.log(states.post.dataUser.QuaTang)
+              } */}
+              {
+                <form onSubmit={handleSubmit(onSubmit)} id="create-course-form">
                 <div className="style-form-addnew">
                   <div className="content-one">
                     <div>
                       <label>Địa chỉ khách hàng</label>
                       <br></br>
-                      <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor"/>
+                      <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor" placeholder={states.post.dataUser.DiaChiKhachHang}/>
                       {errors.DiaChiKhachHang && <p>This field is required</p>}
                     </div>
                     <div>
                       <label>Địa chỉ người chuyển tiền</label>
                       <br></br>
-                      <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
+                      <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor" value="ksdkaks"/>
                       {errors.DiaChiNguoiChuyenTien && <p>This field is required</p>}
                     </div>
                     <div>
@@ -324,6 +333,7 @@ const Admins = () => {
                   <button>Huỷ</button>
                 </div>
               </form>
+              }
             </Modal>
           </div>
           <>

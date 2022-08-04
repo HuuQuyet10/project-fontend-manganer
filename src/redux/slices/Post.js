@@ -9,6 +9,7 @@ const initialState = {
     loading: false,
     post: [],
     panigatePost: [],
+    dataUser: [],
     errorMessage: null
 };
 
@@ -38,7 +39,6 @@ export const getOnePost = createAsyncThunk(
                 Authorization: clientUtils.auth
             }
         });
-        console.log(response.data, "kkkkkkss")
         return response.data;
     }
 )
@@ -108,6 +108,7 @@ export const editPost = () => createAsyncThunk(
         const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.NEW_POST}`;
     }
 )
+// ngoài việc call api bằng createAsync để call api, sau đó dùng extraReducer để payload cái action đó vào trong store, rồi bên client select cái store và lấy ra data
 const postSlice = createSlice({
     name: "post" || "panigatePost",
     initialState,
@@ -123,6 +124,10 @@ const postSlice = createSlice({
             .addCase(getPanigate.fulfilled, (state, action) => {
                 state.loading = true;
                 state.panigatePost = action.payload;
+            })
+            .addCase(getOnePost.fulfilled, (state, action) => {
+                state.loading = true;
+                state.dataUser = action.payload;
             })
             .addCase(getPost.rejected, (state, action) => {
                 state.loading = false;
