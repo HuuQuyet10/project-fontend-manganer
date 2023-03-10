@@ -5,21 +5,26 @@ import { getPost, createPost } from '../../../../redux/slices/Post';
 import "../styles.scss";
 
 const AddItems = (props) => {
+    const states = useSelector((store) => store);
+    const dataID = states.post.dataUser;
+    console.log(dataID, "kkkkk")
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [checkButtonAddEdit, setCheckButtonAddEdit] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState(states.post.post);
     const dispatch = useDispatch();
     const {
         register,
         handleSubmit,
         formState: { errors }
       } = useForm();
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
+        props.onClick();
         const bodyParamster = e;
         dispatch(createPost(bodyParamster));
         setIsModalVisible(false);
         dispatch(getPost());
-        // document.getElementById("create-course-form").reset();
+        document.getElementById("create-course-form").reset();
     };
-    const states = useSelector((store) => store);
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} id="create-course-form">
@@ -28,13 +33,13 @@ const AddItems = (props) => {
                     <div>
                       <label>Địa chỉ khách hàng</label>
                       <br></br>
-                      <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor" placeholder={states.post.dataUser.DiaChiKhachHang}/>
+                      <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor"/>
                       {errors.DiaChiKhachHang && <p>This field is required</p>}
                     </div>
                     <div>
                       <label>Địa chỉ người chuyển tiền</label>
                       <br></br>
-                      <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor" value="ksdkaks"/>
+                      <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
                       {errors.DiaChiNguoiChuyenTien && <p>This field is required</p>}
                     </div>
                     <div>
@@ -49,30 +54,6 @@ const AddItems = (props) => {
                       <input {...register("GiaTien", { required: true })} className="styles__input_newinfor"/>
                       {errors.GiaTien && <p>This field is required</p>}
                     </div>
-                    {/* <div>
-                      <label>Mã đơn hàng</label>
-                      <br></br>
-                      <input {...register("MaDonHang", { required: true })} className="styles__input_newinfor"/>
-                      {errors.MaDonHang && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Ngày tháng</label>
-                      <br></br>
-                      <input {...register("NgayThang", { required: true })} className="styles__input_newinfor"/>
-                      {errors.NgayThang && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Phương thức thanh toán</label>
-                      <br></br>
-                      <input {...register("PhuongThucThanhToan", { required: true })} className="styles__input_newinfor"/>
-                      {errors.PhuongThucThanhToan && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Quà tặng</label>
-                      <br></br>
-                      <input {...register("QuaTang", { required: true })} className="styles__input_newinfor"/>
-                      {errors.QuaTang && <p>This field is required</p>}
-                    </div> */}
                   </div>
                   <div className="content-two">
                     <div>
@@ -99,30 +80,6 @@ const AddItems = (props) => {
                       <input {...register("TenKhachHang", { required: true })} className="styles__input_newinfor"/>
                       {errors.TenKhachHang && <p>This field is required</p>}
                     </div>
-                    {/* <div>
-                      <label>Tên người chuyển tiền</label>
-                      <br></br>
-                      <input {...register("TenNguoiChuyenTien", { required: true })} className="styles__input_newinfor"/>
-                      {errors.TenNguoiChuyenTien && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Tên nhân viên sale</label>
-                      <br></br>
-                      <input {...register("TenNhanVienSale", { required: true })} className="styles__input_newinfor"/>
-                      {errors.TenNhanVienSale && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Tên quản lý</label>
-                      <br></br>
-                      <input {...register("TenQuanLy", { required: true })} className="styles__input_newinfor"/>
-                      {errors.TenQuanLy && <p>This field is required</p>}
-                    </div> */}
-                    {/* <div>
-                      <label>Tracking URL</label>
-                      <br></br>
-                      <input {...register("TrackingURL", { required: true })} className="styles__input_newinfor"/>
-                      {errors.TrackingURL && <p>This field is required</p>}
-                    </div> */}
                   </div>
                 </div>
                 <div>

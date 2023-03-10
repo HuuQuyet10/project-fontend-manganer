@@ -31,7 +31,7 @@ const Admins = () => {
 
 
   const states = useSelector((store) => store);
-  console.log(states)
+  // console.log(states)
 
   
   if (states.post.errorMessage === "Request failed with status code 401") {
@@ -54,7 +54,8 @@ const Admins = () => {
   // edit item 
   const handleEditItem = (e) => {
     let paramsId = e;
-    dispatch(getOnePost(paramsId))
+    dispatch(getOnePost(paramsId));
+    // console.log(states)
     setIsModalVisible(true);
   }
   const columns = [
@@ -156,7 +157,7 @@ const Admins = () => {
               visible={isModalVisible}
               onCancel={handleCancel}
               width={1000}
-              footer="null"
+              footer={null}
               // footer={[
               //   <>
               //     <Button type="danger" key="back" onClick={() => handleCancel()}>Hủy</Button>
