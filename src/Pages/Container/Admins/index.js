@@ -19,6 +19,7 @@ const Admins = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
   const [paginationPage, setPaginationPage] = useState(1);
+  const [updateAddItems, setUpdateAddItems] = useState("deleteItems");
   const logoutPage = () => {
     localStorage.clear();
     navigate("/");
@@ -40,6 +41,7 @@ const Admins = () => {
   } else {
   }
   const handlebutton = () => {
+    setUpdateAddItems("addItems");
     setIsModalVisible(true);
   }
   const handleCancel = () => {
@@ -55,7 +57,7 @@ const Admins = () => {
   const handleEditItem = (e) => {
     let paramsId = e;
     dispatch(getOnePost(paramsId));
-    // console.log(states)
+    setUpdateAddItems("editItems");
     setIsModalVisible(true);
   }
   const columns = [
@@ -170,7 +172,7 @@ const Admins = () => {
                 console.log(states.post.dataUser.QuaTang)
               } */}
                 
-              <Additems onClick={handleCancel}/>
+              <Additems onClick={handleCancel} dataCheckUpdateEdit={updateAddItems}/>
             </Modal>
           </div>
           <>

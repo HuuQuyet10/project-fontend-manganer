@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    DOMAIN_API: "https://apishop-3-u0402536.deta.app",
+    DOMAIN_API: "https://apishop-5-u0402536.deta.app",
     PARAMS_USER: {
         REGISTER: "/api/v1/user/register",
         LOGIN: "/api/v1/user/login",

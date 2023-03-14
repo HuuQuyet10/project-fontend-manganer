@@ -5,12 +5,15 @@ import { getPost, createPost } from '../../../../redux/slices/Post';
 import "../styles.scss";
 
 const AddItems = (props) => {
+    const checkUpdateAdd = props.dataCheckUpdateEdit;
+
     const states = useSelector((store) => store);
     const dataID = states.post.dataUser;
-    console.log(dataID, "kkkkk")
+    console.log(checkUpdateAdd, "kkkkk")
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [checkButtonAddEdit, setCheckButtonAddEdit] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(states.post.post);
+    const [useInfor, setUserInfor] = useState();
     const dispatch = useDispatch();
     const {
         register,
