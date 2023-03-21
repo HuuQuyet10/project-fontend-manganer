@@ -16,6 +16,15 @@ const AddItems = (props) => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
   useEffect(() => {
+    if (checkUpdateAdd === "addItems") {
+      document.getElementById("create-course-form").reset();
+    } 
+  })
+  useEffect(() => {
+    if (checkUpdateAdd === "addItems") {
+      document.getElementById("create-course-form").reset();
+
+    } 
     if (dataID && checkUpdateAdd) {
       setInforUser(dataID);
     }
@@ -26,7 +35,7 @@ const AddItems = (props) => {
       Object.keys(inforUser).forEach((key) => {
         setValue(key, inforUser[key]);
       });
-    }
+    } 
   }, [inforUser, setValue]);
   const onSubmit = async (e) => {
     props.onClick();
