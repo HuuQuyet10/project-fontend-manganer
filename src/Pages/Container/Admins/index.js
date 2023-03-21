@@ -65,52 +65,49 @@ const Admins = () => {
       title: 'STT',
       key: 'index',
       render: (text, record, index) => index + 1,
+      width: '5%',
     },
     {
       title: 'Địa chỉ khách hàng',
       dataIndex: 'DiaChiKhachHang',
       key: 'DiaChiKhachHang',
-    },
-    {
-      title: 'Địa chỉ người chuyển tiền',
-      dataIndex: 'DiaChiNguoiChuyenTien',
-      key: 'DiaChiNguoiChuyenTien',
+      width: '20%',
     },
     { 
       title: 'Giá tiền',
       dataIndex: 'GiaTien',
       key: 'GiaTien',
+      width: '10%',
     },
     {
       title: 'Phone khách',
       dataIndex: 'SdtKhachHang',
       key: 'SdtKhachHang',
-    },
-    {
-      title: 'Phone người chuyển tiền',
-      dataIndex: 'SdtNguoiChuyenTien',
-      key: 'SdtNguoiChuyenTien',
+      width: '8%',
     },
     {
       title: 'Tên đơn hàng',
       dataIndex: 'TenDonHang',
       key: 'TenDonHang',
+      width: '15%',
     },
     {
       title: 'Tên khách hàng',
       dataIndex: 'TenKhachHang',
       key: 'TenKhachHang',
+      width: '10%',
     },
-    // {
-    //   title: 'Ngày tạo đơn',
-    //   dataIndex: 'createdAt',
-    //   key: 'createdAt',
-    // },
     {
-      title: 'Update',
+      title: 'Ngày lên đơn',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      width: '10%'
+    },
+    {
+      title: 'Update / Delete',
       dataIndex: 'createAndUpdate',
       key: 'createAndUpdate',
-      width: 120,
+      width: '10%',
       render: (item, record) => {
         return (
           <div>
@@ -160,18 +157,7 @@ const Admins = () => {
               onCancel={handleCancel}
               width={1000}
               footer={null}
-              // footer={[
-              //   <>
-              //     <Button type="danger" key="back" onClick={() => handleCancel()}>Hủy</Button>
-              //     <Button key="submit"  type="submit">Lưu </Button>
-              //   </>
-              // ]}
-            // onOk={handleOk}
             >
-              {/* {
-                console.log(states.post.dataUser.QuaTang)
-              } */}
-                
               <Additems onClick={handleCancel} dataCheckUpdateEdit={updateAddItems}/>
             </Modal>
           </div>
@@ -184,7 +170,7 @@ const Admins = () => {
             }
           </>
         </Content>
-        {/* <FooterApp /> */}
+        <FooterApp />
       </Layout>
     </Layout>
   );

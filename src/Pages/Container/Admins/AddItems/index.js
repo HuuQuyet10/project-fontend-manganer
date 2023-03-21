@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { getPost, createPost } from '../../../../redux/slices/Post';
+import { getPost, createPost, updatePost } from '../../../../redux/slices/Post';
 import "../styles.scss";
 
 const AddItems = (props) => {
@@ -41,10 +41,30 @@ const AddItems = (props) => {
 
 
   const onSubmit = async (e) => {
+    // if (checkUpdateAdd === "addItems") {
+    //   props.onClick();
+    //   const bodyParamster = e;
+    //   dispatch(createPost(bodyParamster));
+    //   setIsModalVisible(false);
+    //   dispatch(getPost());
+    //   document.getElementById("create-course-form").reset();
+    // } else {
+    //   props.onClick();
+    //   const bodyParamster = e;
+    //   dispatch(updatePost(bodyParamster));
+    //   setIsModalVisible(false);
+    //   dispatch(getPost());
+    //   document.getElementById("create-course-form").reset();
+    // }
+
     props.onClick();
     const bodyParamster = e;
-    dispatch(createPost(bodyParamster));
     setIsModalVisible(false);
+    if (checkUpdateAdd === "addItems") {
+      dispatch(createPost(bodyParamster));
+    } else {
+      dispatch(updatePost(bodyParamster));
+    }
     dispatch(getPost());
     document.getElementById("create-course-form").reset();
   };
@@ -54,22 +74,16 @@ const AddItems = (props) => {
         <div className="style-form-addnew">
           <div className="content-one">
             <div>
+              <label>Tên khách hàng</label>
+              <br></br>
+              <input {...register("TenKhachHang", { required: true })} className="styles__input_newinfor" />
+              {errors.TenKhachHang && <p>This field is required</p>}
+            </div>
+            <div>
               <label>Địa chỉ khách hàng</label>
               <br></br>
               <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor" />
               {errors.DiaChiKhachHang && <p>This field is required</p>}
-            </div>
-            <div>
-              <label>Địa chỉ người chuyển tiền</label>
-              <br></br>
-              <input {...register("DiaChiNguoiChuyenTien", { required: true })} className="styles__input_newinfor" />
-              {errors.DiaChiNguoiChuyenTien && <p>This field is required</p>}
-            </div>
-            <div>
-              <label>Email khách</label>
-              <br></br>
-              <input {...register("EmailKhachHang", { required: true })} className="styles__input_newinfor" />
-              {errors.EmailKhachHang && <p>This field is required</p>}
             </div>
             <div>
               <label>Giá tiền</label>
@@ -86,28 +100,16 @@ const AddItems = (props) => {
               {errors.SdtKhachHang && <p>This field is required</p>}
             </div>
             <div>
-              <label>Phone người chuyển tiền</label>
-              <br></br>
-              <input {...register("SdtNguoiChuyenTien", { required: true })} className="styles__input_newinfor" />
-              {errors.SdtNguoiChuyenTien && <p>This field is required</p>}
-            </div>
-            <div>
               <label>Tên đơn hàng</label>
               <br></br>
               <input {...register("TenDonHang", { required: true })} className="styles__input_newinfor" />
               {errors.TenDonHang && <p>This field is required</p>}
             </div>
             <div>
-              <label>Tên khách hàng</label>
-              <br></br>
-              <input {...register("TenKhachHang", { required: true })} className="styles__input_newinfor" />
-              {errors.TenKhachHang && <p>This field is required</p>}
+              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Add</button> : <button type="submit" value="Submit">Update</button>}
+              <button onClick={props.onClick}>Huỷ</button>
             </div>
           </div>
-        </div>
-        <div>
-          {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Add</button> : <button type="submit" value="Submit">Update</button>}
-          <button onClick={props.onClick}>Huỷ</button>
         </div>
       </form>
     </>

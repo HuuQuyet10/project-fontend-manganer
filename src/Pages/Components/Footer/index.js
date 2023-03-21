@@ -9,7 +9,7 @@ const FooterApp = () => {
         textAlign: "center",
       }}
     >
-      Ant Design 2022 Created by Ant UED
+      @Copyright 2022 QuyetPH, All rights reserved
     </Footer>
   );
 };

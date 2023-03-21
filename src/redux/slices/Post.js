@@ -28,7 +28,6 @@ export const getPost = createAsyncThunk(
     }
 )
 
-
 // CALL ONE POST
 export const getOnePost = createAsyncThunk(
     "post/getOnePost",
@@ -69,7 +68,7 @@ export const createPost = createAsyncThunk(
             const checkData = responsive.data;
             if (checkData.code == 200) {
                 notification.open({
-                    message: "Tiêu đề: Thành công",
+                    message: "Thêm Thành công",
                     description: checkData.status,
                     // onClick: () => {
                     //   console.log('Notification Clicked!');
@@ -85,7 +84,47 @@ export const createPost = createAsyncThunk(
             };
             console.log(customError, "Error Axios!!");
             notification.open({
-                message: "Tiêu đề: Thất bại",
+                message: "Thêm Thất bại",
+                description: customError.data,
+                // onClick: () => {
+                //   console.log('Notification Clicked!');
+                // },
+            });
+            document.getElementById("create-course-form").reset();
+        }
+    }
+)
+
+export const updatePost = createAsyncThunk(
+    "posts/update",
+    async (bodyParamster) => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.UPDATE_POST}`;
+        try {
+            const responsive = await axios.post(dataUrl, bodyParamster, {
+                headers: {
+                    Authorization: clientUtils.auth
+                }
+            });
+            const checkData = responsive.data;
+            if (checkData.code == 200) {
+                notification.open({
+                    message: "Cập Nhật Thành công",
+                    description: checkData.status,
+                    // onClick: () => {
+                    //   console.log('Notification Clicked!');
+                    // },
+                  });
+            }
+            return checkData;   
+        } catch (err) {
+            const customError = {
+                name: "Error Axios!!",
+                message: err.response.statusText,
+                data: err.response.data.error.message // serializable
+            };
+            console.log(customError, "Error Axios!!");
+            notification.open({
+                message: "Cập Nhật Thất bại",
                 description: customError.data,
                 // onClick: () => {
                 //   console.log('Notification Clicked!');
@@ -138,6 +177,10 @@ const postSlice = createSlice({
             .addCase(createPost.rejected, (state, action) => {
                 state.loading = false;
                 // state.errorMessage = action.error.message || `Không thể thêm dữ liệu`
+            })
+
+            .addCase(updatePost.rejected, (state, action) => {
+                state.loading = false;
             })
     }
 });
