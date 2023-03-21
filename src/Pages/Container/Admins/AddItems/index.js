@@ -15,21 +15,22 @@ const AddItems = (props) => {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
+
+
+  // vì hàm này luôn chạy để check xem là form edit hay add, nên sẽ ko có Dependencies
   useEffect(() => {
     if (checkUpdateAdd === "addItems") {
       document.getElementById("create-course-form").reset();
     } 
   })
-  useEffect(() => {
-    if (checkUpdateAdd === "addItems") {
-      document.getElementById("create-course-form").reset();
 
-    } 
-    if (dataID && checkUpdateAdd) {
+  // 2 hàm này chạy để cập nhật state cho input, 1 hàm sẽ get và set data cho inforUser
+  // hàm còn lại sẽ lấy ra 1 inforUser duy nhất mà đang select để đổ ra input
+  useEffect(() => {
+    if (dataID) {
       setInforUser(dataID);
     }
-  }, [dataID, checkUpdateAdd, dataUpdate]);
-
+  }, [dataID]);
   useEffect(() => {
     if (inforUser) {
       Object.keys(inforUser).forEach((key) => {
@@ -37,6 +38,8 @@ const AddItems = (props) => {
       });
     } 
   }, [inforUser, setValue]);
+
+
   const onSubmit = async (e) => {
     props.onClick();
     const bodyParamster = e;
