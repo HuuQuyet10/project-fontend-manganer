@@ -2,14 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import './index.css';
 import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  UnorderedListOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 
@@ -18,8 +12,8 @@ const { Header, Content, Footer, Sider } = Layout;
 const items2 = [
   {
     key: "1",
-    icon: React.createElement(UserOutlined),
-    label: <Link to="/admin">Admin</Link>,
+    icon: React.createElement(UnorderedListOutlined),
+    label: <Link to="/admin">Quản lý đơn hàng</Link>,
   },
   {
     key: "2",

@@ -104,7 +104,7 @@ const Admins = () => {
       width: '10%'
     },
     {
-      title: 'Update / Delete',
+      title: 'Cập nhật / Xoá',
       dataIndex: 'createAndUpdate',
       key: 'createAndUpdate',
       width: '10%',
@@ -113,8 +113,8 @@ const Admins = () => {
           <div>
             <Button onClick={(e) => {
               handleEditItem(record._id)
-            }} type="primary">Update</Button>
-            <Button onClick={handleDeleteItem} type="error">Delete</Button>
+            }} type="primary">Cập nhật</Button>
+            <Button onClick={handleDeleteItem} type="error">Xoá</Button>
           </div>
         )
       }
@@ -151,7 +151,7 @@ const Admins = () => {
           <div>
             <Modal
               title={[
-                <h2>THÊM MỚI</h2>
+                <h2>{updateAddItems === "addItems" ? "Thêm mới" : "Cập nhật"}</h2>
               ]}
               visible={isModalVisible}
               onCancel={handleCancel}

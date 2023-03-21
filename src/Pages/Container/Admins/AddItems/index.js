@@ -106,7 +106,7 @@ const AddItems = (props) => {
               {errors.TenDonHang && <p>This field is required</p>}
             </div>
             <div>
-              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Add</button> : <button type="submit" value="Submit">Update</button>}
+              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Thêm mới</button> : <button type="submit" value="Submit">Cập nhật</button>}
               <button onClick={props.onClick}>Huỷ</button>
             </div>
           </div>
