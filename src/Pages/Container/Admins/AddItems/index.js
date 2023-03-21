@@ -5,6 +5,7 @@ import { getPost, createPost, updatePost } from '../../../../redux/slices/Post';
 import "../styles.scss";
 
 const AddItems = (props) => {
+  console.log(props.onClick)
   const checkUpdateAdd = props.dataCheckUpdateEdit;
   const states = useSelector((store) => store);
   const dataID = states.post.dataUser;
@@ -41,22 +42,6 @@ const AddItems = (props) => {
 
 
   const onSubmit = async (e) => {
-    // if (checkUpdateAdd === "addItems") {
-    //   props.onClick();
-    //   const bodyParamster = e;
-    //   dispatch(createPost(bodyParamster));
-    //   setIsModalVisible(false);
-    //   dispatch(getPost());
-    //   document.getElementById("create-course-form").reset();
-    // } else {
-    //   props.onClick();
-    //   const bodyParamster = e;
-    //   dispatch(updatePost(bodyParamster));
-    //   setIsModalVisible(false);
-    //   dispatch(getPost());
-    //   document.getElementById("create-course-form").reset();
-    // }
-
     props.onClick();
     const bodyParamster = e;
     setIsModalVisible(false);
@@ -104,10 +89,6 @@ const AddItems = (props) => {
               <br></br>
               <input {...register("TenDonHang", { required: true })} className="styles__input_newinfor" />
               {errors.TenDonHang && <p>This field is required</p>}
-            </div>
-            <div>
-              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Thêm mới</button> : <button type="submit" value="Submit">Cập nhật</button>}
-              <button onClick={props.onClick}>Huỷ</button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import clientUtils from "../../utils/client-utils";
 import constanDomain from "../../configs/constanDomain";
-import { notification } from "antd";
+import { notification, message } from "antd";
 import axios from "axios";
 
 
@@ -67,13 +67,7 @@ export const createPost = createAsyncThunk(
             });
             const checkData = responsive.data;
             if (checkData.code == 200) {
-                notification.open({
-                    message: "Thêm Thành công",
-                    description: checkData.status,
-                    // onClick: () => {
-                    //   console.log('Notification Clicked!');
-                    // },
-                  });
+                message.success('Thêm Thành công');
             }
             return checkData;   
         } catch (err) {
@@ -83,13 +77,7 @@ export const createPost = createAsyncThunk(
                 data: err.response.data.error.message // serializable
             };
             console.log(customError, "Error Axios!!");
-            notification.open({
-                message: "Thêm Thất bại",
-                description: customError.data,
-                // onClick: () => {
-                //   console.log('Notification Clicked!');
-                // },
-            });
+            message.error('Thêm Thất bại');
             document.getElementById("create-course-form").reset();
         }
     }
@@ -107,13 +95,7 @@ export const updatePost = createAsyncThunk(
             });
             const checkData = responsive.data;
             if (checkData.code == 200) {
-                notification.open({
-                    message: "Cập Nhật Thành công",
-                    description: checkData.status,
-                    // onClick: () => {
-                    //   console.log('Notification Clicked!');
-                    // },
-                  });
+                message.success('Cập Nhật Thành công');
             }
             return checkData;   
         } catch (err) {
@@ -123,24 +105,41 @@ export const updatePost = createAsyncThunk(
                 data: err.response.data.error.message // serializable
             };
             console.log(customError, "Error Axios!!");
-            notification.open({
-                message: "Cập Nhật Thất bại",
-                description: customError.data,
-                // onClick: () => {
-                //   console.log('Notification Clicked!');
-                // },
-            });
+            message.error('Cập Nhật Thất bại');
             document.getElementById("create-course-form").reset();
         }
     }
 )
 
-// export const deletePost = () => createAsyncThunk(
-//     "post/deletePost",
-//     async () => {
-//         const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.DELETE_POST}`;
-//     }
-// )
+export const deletePost = createAsyncThunk(
+    "posts/delete",
+    async (bodyParamster) => {
+        const dataUrl = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_POST.DELETE_POST + bodyParamster}`;
+        try {
+            const responsive = await axios.delete(dataUrl, {
+                headers: {
+                    Authorization: clientUtils.auth
+                }
+            });
+            const checkData = responsive.data;
+            if (checkData.code == 200) {
+                message.success('Xoá Thành công');
+            }
+            return checkData;   
+        } catch (err) {
+            const customError = {
+                name: "Error Axios!!",
+                message: err.response.statusText,
+                data: err.response.data.error.message // serializable
+            };
+            console.log(customError, "Error Axios!!");
+            message.error('Xoá Thất bại');
+            document.getElementById("create-course-form").reset();
+        }
+    }
+)
+
+
 export const editPost = () => createAsyncThunk(
     "post/editPost",
     async () => {
@@ -179,8 +178,16 @@ const postSlice = createSlice({
                 // state.errorMessage = action.error.message || `Không thể thêm dữ liệu`
             })
 
+            // redux của cập nhật post
             .addCase(updatePost.rejected, (state, action) => {
                 state.loading = false;
+            })
+
+            // redux của xoá post
+            .addCase(deletePost.rejected, (state, action) => {
+                state.loading = false;
+                const todoId = action.payload
+                return state.filter(todo => todo.id !== todoId)
             })
     }
 });

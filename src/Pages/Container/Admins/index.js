@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Button, Table, Modal, Input, Form, Pagination } from "antd";
+import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
-import { createPost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
+import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import Additems from "./AddItems";
 import "./styles.scss";
@@ -32,7 +32,6 @@ const Admins = () => {
 
 
   const states = useSelector((store) => store);
-  // console.log(states)
 
   
   if (states.post.errorMessage === "Request failed with status code 401") {
@@ -49,9 +48,11 @@ const Admins = () => {
   };
 
   // handle delete item
-  const handleDeleteItem = () => {
-    console.log("delete")
-  }
+  const confirmDelete = (e) => {
+    const bodyParamster = e;
+    dispatch(deletePost(bodyParamster));
+    // dispatch(getPost());
+  };
 
   // edit item 
   const handleEditItem = (e) => {
@@ -114,7 +115,16 @@ const Admins = () => {
             <Button onClick={(e) => {
               handleEditItem(record._id)
             }} type="primary">Cập nhật</Button>
-            <Button onClick={handleDeleteItem} type="error">Xoá</Button>
+            <Popconfirm
+              placement="topRight"
+              title="Bạn có muốn xoá đơn hàng này không?"
+              description="Xoá đơn hàng"
+              onConfirm={(e) => {confirmDelete(record._id)}}
+              okText="Xoá"
+              cancelText="Huỷ"
+            >
+              <Button type="error">Xoá</Button>
+            </Popconfirm>
           </div>
         )
       }
