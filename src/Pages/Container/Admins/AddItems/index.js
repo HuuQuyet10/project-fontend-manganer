@@ -47,9 +47,9 @@ const AddItems = (props) => {
     const bodyParamster = e;
     setIsModalVisible(false);
     if (checkUpdateAdd === "addItems") {
-      dispatch(createPost(bodyParamster));
+      await dispatch(createPost(bodyParamster));
     } else {
-      dispatch(updatePost(bodyParamster));
+      await dispatch(updatePost(bodyParamster));
     }
     dispatch(getPost());
     document.getElementById("create-course-form").reset();

@@ -51,7 +51,7 @@ const Admins = () => {
   const confirmDelete = (e) => {
     const bodyParamster = e;
     dispatch(deletePost(bodyParamster));
-    // dispatch(getPost());
+    dispatch(getPost());
   };
 
   // edit item 
