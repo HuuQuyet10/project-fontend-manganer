@@ -1,10 +1,27 @@
-## ReactJs Admin
 
-How to run ?
-npm i
-npm start
+## How to run project ?
 
+Clone the project
 
-How to build & run build ?
-npm build
-npm start
+```bash
+  git clone https://github.com/HuuQuyet10/project-fontend-manganer.git
+```
+
+Go to the project directory
+
+```bash
+  cd project-fontend-manganer
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
