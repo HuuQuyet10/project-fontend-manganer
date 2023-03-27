@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../redux/slices/User";
 import clientUtils from "../../../utils/client-utils";
+import "../../../Styles/Login.css"
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -48,29 +49,45 @@ const Login = () => {
     window.location.reload(false);
   }
 
+
   return (
-    <div>
-      <h1>Login</h1>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-      </label>
-      {error && <div>{error}</div>}
-      <button onClick={handleSubmit}>Log in</button>
+    <div className="content-form">
+      <div class="form">
+        <div class="header">Sign In</div>
+        <div class="inputs">
+          <input
+            placeholder="Email"
+            class="input"
+            type="text"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <input
+            placeholder="Password"
+            class="input"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <div class="checkbox-container">
+            <label class="checkbox">
+              <input type="checkbox" id="checkbox" />
+            </label>
+            <label for="checkbox" class="checkbox-text">Remember me</label>
+          </div>
+          {error && <div>{error}</div>}
+          <div class="account-test">
+            <p>Email: mail01@gmail.com</p>
+            <p>/</p>
+            <p>Pass: 12345</p>
+          </div>
+          <button class="sigin-btn" onClick={handleSubmit}>Submit</button>
+          <a class="forget" href="#">Forget password ?</a>
+          <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+      </div>
     </div>
   );
 };
