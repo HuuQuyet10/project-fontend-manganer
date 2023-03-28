@@ -63,19 +63,19 @@ const AddItems = (props) => {
               <label>Tên khách hàng</label>
               <br></br>
               <input {...register("TenKhachHang", { required: true })} className="styles__input_newinfor" />
-              {errors.TenKhachHang && <p>This field is required</p>}
+              {errors.TenKhachHang && <p>Đây là trường bắt buộc</p>}
             </div>
             <div>
               <label>Địa chỉ khách hàng</label>
               <br></br>
               <input {...register("DiaChiKhachHang", { required: true })} className="styles__input_newinfor" />
-              {errors.DiaChiKhachHang && <p>This field is required</p>}
+              {errors.DiaChiKhachHang && <p>Đây là trường bắt buộc</p>}
             </div>
             <div>
               <label>Giá tiền</label>
               <br></br>
               <input {...register("GiaTien", { required: true })} className="styles__input_newinfor" />
-              {errors.GiaTien && <p>This field is required</p>}
+              {errors.GiaTien && <p>Đây là trường bắt buộc</p>}
             </div>
           </div>
           <div className="content-two">
@@ -83,13 +83,13 @@ const AddItems = (props) => {
               <label>Phone khách</label>
               <br></br>
               <input {...register("SdtKhachHang", { required: true })} className="styles__input_newinfor" />
-              {errors.SdtKhachHang && <p>This field is required</p>}
+              {errors.SdtKhachHang && <p>Đây là trường bắt buộc</p>}
             </div>
             <div>
               <label>Tên đơn hàng</label>
               <br></br>
               <input {...register("TenDonHang", { required: true })} className="styles__input_newinfor" />
-              {errors.TenDonHang && <p>This field is required</p>}
+              {errors.TenDonHang && <p>Đây là trường bắt buộc</p>}
             </div>
             <div className='group-button'>
               {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit" className='btn-update-addNews'>Thêm mới</button> : <button type="submit" value="Submit" className='btn-update-addNews'>Cập nhật</button>}
