@@ -13,6 +13,7 @@ import { store } from "../src/redux/store";
 
 // CSS LIB
 import 'antd/dist/antd.css';
+import './Styles/Styles_global.css';
 
 
 ReactDOM.render(

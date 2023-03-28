@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import './index.css';
+import "../../../Styles/Dashboard.scss";
 import {
   UserOutlined,
   UnorderedListOutlined
@@ -11,12 +11,12 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const items2 = [
   {
-    key: "1",
+    key: "2",
     icon: React.createElement(UnorderedListOutlined),
     label: <Link to="/admin">Quản lý đơn hàng</Link>,
   },
   {
-    key: "2",
+    key: "3",
     icon: React.createElement(UserOutlined),
     label: <Link to="/user-details">user</Link>,
   },

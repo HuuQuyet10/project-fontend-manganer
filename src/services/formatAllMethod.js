@@ -8,3 +8,11 @@ export function formatDate(dateString) {
     const formattedDate = `${day}/${month}/${year}`;
     return formattedDate;
 }
+export const USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+export const VND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+});

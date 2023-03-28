@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { formatDate } from "../../../services/formatAllMethod";
+import { formatDate, VND } from "../../../services/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import Additems from "./AddItems";
@@ -76,6 +76,13 @@ const Admins = () => {
       dataIndex: 'GiaTien',
       key: 'GiaTien',
       width: '10%',
+      render: (item, record) => {
+        return (
+          <>
+            <p>{VND.format(record.GiaTien)}</p>
+          </>
+        )
+      }
     },
     {
       title: 'Phone khách',
