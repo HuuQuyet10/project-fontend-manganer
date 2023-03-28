@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LayOutAdmin from "../../Components";
 import clientUtils from "../../../utils/client-utils";
+import { formatDate } from "../../../services/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import Additems from "./AddItems";
@@ -61,6 +62,7 @@ const Admins = () => {
     setUpdateAddItems("editItems");
     setIsModalVisible(true);
   }
+  const checkkkk = formatDate("2023-03-27T11:25:01.242Z");
   const columns = [
     {
       title: 'STT',
@@ -102,7 +104,14 @@ const Admins = () => {
       title: 'Ngày lên đơn',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      width: '10%'
+      width: '10%',
+      render: (item, record) => {
+        return (
+          <>
+            <p>{formatDate(record.createdAt)}</p>
+          </>
+        )
+      }
     },
     {
       title: 'Cập nhật / Xoá',
@@ -114,7 +123,7 @@ const Admins = () => {
           <div>
             <Button onClick={(e) => {
               handleEditItem(record._id)
-            }} type="primary">Cập nhật</Button>
+            }} type="primary" className='styles__input_update_add'>Cập nhật</Button>
             <Popconfirm
               placement="topRight"
               title="Bạn có muốn xoá đơn hàng này không?"
