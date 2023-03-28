@@ -45,20 +45,19 @@ const Admins = () => {
   };
 
   // handle delete item
-  const confirmDelete = (e) => {
+  const confirmDelete = async (e) => {
     const bodyParamster = e;
-    dispatch(deletePost(bodyParamster));
-    dispatch(getPost());
+    await dispatch(deletePost(bodyParamster));
+    await dispatch(getPost());
   };
 
   // edit item 
-  const handleEditItem = (e) => {
+  const handleEditItem = async (e) => {
     let paramsId = e;
-    dispatch(getOnePost(paramsId));
+    await dispatch(getOnePost(paramsId));
     setUpdateAddItems("editItems");
     setIsModalVisible(true);
   }
-  const checkkkk = formatDate("2023-03-27T11:25:01.242Z");
   const columns = [
     {
       title: 'STT',
@@ -128,7 +127,7 @@ const Admins = () => {
               okText="Xoá"
               cancelText="Huỷ"
             >
-              <Button type="error">Xoá</Button>
+              <Button type="primary" danger>Xoá</Button>
             </Popconfirm>
           </div>
         )
@@ -139,10 +138,10 @@ const Admins = () => {
   const handleOk = (values) => {
     setIsModalVisible(false);
   };
-  const checkOnclickPa = (e) => {
+  const checkOnclickPa = async (e) => {
     const bodyParamster = e;
     setPaginationPage(e)
-    dispatch(getPost(bodyParamster));
+    await dispatch(getPost(bodyParamster));
   };
   return (
     <Layout hasSider>
@@ -180,7 +179,9 @@ const Admins = () => {
             {
               states.post.loading === false ? <p>Loading...</p> : <>
                 <Table dataSource={states.post.post} columns={columns} {...tableProps} pagination={false}/>
-                <div><Pagination defaultCurrent={paginationPage} total={states.post.panigatePost.length} onChange={checkOnclickPa}/></div>
+                <div className="box_pagination">
+                  <Pagination defaultCurrent={paginationPage} total={states.post.panigatePost.length} onChange={checkOnclickPa}/>
+                </div>
               </>
             }
           </>

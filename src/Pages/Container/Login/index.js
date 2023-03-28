@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import md5 from "md5";
+import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../redux/slices/User";
@@ -47,6 +48,7 @@ const Login = () => {
   if (userState.user.code === 200) {
     navigate("/admin");
     window.location.reload(false);
+    message.success('Đăng nhập thành công');
   }
 
 

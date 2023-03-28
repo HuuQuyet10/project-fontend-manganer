@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import constanDomain from "../../configs/constanDomain";
 import clientUtils from "../../utils/client-utils";
 import { useNavigate } from "react-router-dom";
-import { notification } from "antd";
+import { notification, message } from "antd";
 import axios from "axios";
 
 const initialState = {
@@ -18,16 +18,12 @@ export const getUsers = createAsyncThunk(
     const responsive = await axios.post(dataUrl, bodyParamster);
     const dataResposive = responsive.data;
     if (dataResposive.code === 200) {
+      message.success('Đăng nhập thành công');
       localStorage.setItem("accessToken", dataResposive.accessToken);
       localStorage.setItem("refreshtoken", dataResposive.refreshtoken);
-    } else
-      notification.open({
-        message: "Tiêu đề: bị lỗi",
-        description: dataResposive.message,
-        // onClick: () => {
-        //   console.log('Notification Clicked!');
-        // },
-      });
+    } else {
+        message.error(dataResposive.message);
+    }
     return responsive.data;
   }
 );

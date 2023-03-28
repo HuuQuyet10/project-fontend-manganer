@@ -97,4 +97,21 @@
         cursor: pointer;
     }
 }
-
+.box_pagination {
+    margin: 2em 0;
+}
+.box_header_attention {
+    overflow-x: hidden;
+}
+.marquee-container {
+    div:nth-child(1) {
+        display: none;
+    }
+    div:nth-child(3) {
+        display: none;
+    }
+    .text-heightLine {
+        color: white;
+        font-weight: bold;
+    }
+}

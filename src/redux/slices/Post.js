@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import clientUtils from "../../utils/client-utils";
 import constanDomain from "../../configs/constanDomain";
-import { notification, message } from "antd";
+import { message } from "antd";
 import axios from "axios";
 
 
