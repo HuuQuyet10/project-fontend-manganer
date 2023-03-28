@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { getPost, createPost, updatePost } from '../../../../redux/slices/Post';
-import "../styles.scss";
+import "../../../../Styles/Dashboard.scss";
 
 const AddItems = (props) => {
   console.log(props.onClick)
@@ -91,9 +91,9 @@ const AddItems = (props) => {
               <input {...register("TenDonHang", { required: true })} className="styles__input_newinfor" />
               {errors.TenDonHang && <p>This field is required</p>}
             </div>
-            <div>
-              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit">Thêm mới</button> : <button type="submit" value="Submit">Cập nhật</button>}
-              <Button type="primary" onClick={props.onClick}>Huỷ</Button>
+            <div className='group-button'>
+              {checkUpdateAdd === "addItems" ? <button type="submit" value="Submit" className='btn-update-addNews'>Thêm mới</button> : <button type="submit" value="Submit" className='btn-update-addNews'>Cập nhật</button>}
+              <button type="reset" onClick={props.onClick} className='btn-close-box'>Huỷ</button>
             </div>
           </div>
         </div>

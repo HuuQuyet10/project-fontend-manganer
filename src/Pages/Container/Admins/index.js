@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
-import { DownOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import LayOutAdmin from "../../Components";
-import clientUtils from "../../../utils/client-utils";
 import { formatDate } from "../../../services/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp } from "../../Components";
 import Additems from "./AddItems";
-import "./styles.scss";
+import "../../../Styles/Dashboard.scss";
 
 const { Content } = Layout;
 

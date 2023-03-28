@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../redux/slices/User";
 import clientUtils from "../../../utils/client-utils";
-import "../../../Styles/Login.css"
+import "../../../Styles/Login_page.scss"
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,11 +25,11 @@ const Login = () => {
       return;
     }
     if (!email) {
-      setError("Please enter your email");
+      setError("Vui lòng nhập email");
       return;
     }
     if (!password) {
-      setError("Please enter your password");
+      setError("Vui lòng nhập password");
       return;
     }
     setIsSubmitting(true);
@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <div className="content-form">
       <div class="form">
-        <div class="header">Sign In</div>
+        <div class="header">Đăng nhập</div>
         <div class="inputs">
           <input
             placeholder="Email"
@@ -71,21 +71,15 @@ const Login = () => {
             onChange={(event) => setPassword(event.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <div class="checkbox-container">
-            <label class="checkbox">
-              <input type="checkbox" id="checkbox" />
-            </label>
-            <label for="checkbox" class="checkbox-text">Remember me</label>
-          </div>
           {error && <div>{error}</div>}
           <div class="account-test">
             <p>Email: mail01@gmail.com</p>
             <p>/</p>
             <p>Pass: 12345</p>
           </div>
-          <button class="sigin-btn" onClick={handleSubmit}>Submit</button>
-          <a class="forget" href="#">Forget password ?</a>
-          <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+          <button class="sigin-btn" onClick={handleSubmit}>Đăng nhập</button>
+          <a class="forget" href="#">Quên password ?</a>
+          <p class="signup-link">Bạn chưa có tài khoản? <a href="#">Đăng ký</a></p>
         </div>
       </div>
     </div>
