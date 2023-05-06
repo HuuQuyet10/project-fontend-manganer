@@ -2,14 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  
-  .gallery img {
+}
+
+.gallery img {
     margin: 10px;
     cursor: pointer;
-  }
-  
-  .lightbox {
+}
+
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
@@ -19,16 +19,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .lightbox img {
+}
+
+.lightbox img {
     max-width: 90%;
     max-height: 90%;
-  }
-  
-  .close-button,
-  .previous-button,
-  .next-button {
+}
+
+.close-button,
+.previous-button,
+.next-button {
     position: absolute;
     top: 20px;
     padding: 10px;
@@ -36,17 +36,16 @@
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     cursor: pointer;
-  }
-  
-  .close-button {
+}
+
+.close-button {
     right: 20px;
-  }
-  
-  .previous-button {
+}
+
+.previous-button {
     left: 20px;
-  }
-  
-  .next-button {
+}
+
+.next-button {
     right: 20px;
-  }
-  
+}
