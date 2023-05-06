@@ -1,0 +1,52 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .gallery img {
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .close-button,
+  .previous-button,
+  .next-button {
+    position: absolute;
+    top: 20px;
+    padding: 10px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-button {
+    right: 20px;
+  }
+  
+  .previous-button {
+    left: 20px;
+  }
+  
+  .next-button {
+    right: 20px;
+  }
+  

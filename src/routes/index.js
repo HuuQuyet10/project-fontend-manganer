@@ -6,6 +6,7 @@ import PrivateOutltet from "../routes/RouterWithPath";
 import Admins from "../Pages/Container/Admins";
 import PageNotFound from "../Pages/Container/PageNotFound";
 import Signup from "../Pages/Container/Signup";
+import TestComponents from "../Pages/Container/TestComponents";
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/test-cpn" element={<TestComponents />} />
 
       {/* router private  */}
       <Route element={<PrivateOutltet />}>
