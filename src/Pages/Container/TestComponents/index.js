@@ -6,6 +6,8 @@ const TestComponents = () => {
         'https://cdnmedia.baotintuc.vn/Upload/0gYjdiNY41wQIbPeRYyPvA/files/2023/05/Ukraine/ukraine-4.png',
         'https://cdnmedia.baotintuc.vn/Upload/0gYjdiNY41wQIbPeRYyPvA/files/2023/05/Ukraine/ukraine-2.png',
         'https://photo-baomoi.bmcdn.me/w700_r1/2023_05_06_65_45742668/d6cecae7b9aa50f409bb.jpg.webp',
+        'https://cdnmedia.baotintuc.vn/Upload/0gYjdiNY41wQIbPeRYyPvA/files/2023/05/Ukraine/ukraine-2.png',
+        'https://photo-baomoi.bmcdn.me/w700_r1/2023_05_06_65_45742668/d6cecae7b9aa50f409bb.jpg.webp',
         // ...
     ];
     return (

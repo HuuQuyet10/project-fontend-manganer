@@ -87,14 +87,14 @@ const ReactSilderImg = ({ images }) => {
                     <button className="next-button" onClick={goToNext} disabled={isLastImage}>
                         Next
                     </button>
-                    <div className="zoom-controls">
+                    {/* <div className="zoom-controls">
                         <button className="zoom-in-button" onClick={handleZoomIn}>
                             Zoom In
                         </button>
                         <button className="zoom-out-button" onClick={handleZoomOut}>
                             Zoom Out
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>
