@@ -41,7 +41,7 @@ const ChartColumns = (props) => {
         // Create series
         let series1 = chart.series.push(
             am5xy.ColumnSeries.new(root, {
-                name: "value1",
+                name: "value 1",
                 xAxis: xAxis,
                 yAxis: yAxis,
                 valueYField: "value1",
@@ -52,7 +52,7 @@ const ChartColumns = (props) => {
 
         let series2 = chart.series.push(
             am5xy.ColumnSeries.new(root, {
-                name: "value2",
+                name: "value 2",
                 xAxis: xAxis,
                 yAxis: yAxis,
                 valueYField: "value2",
