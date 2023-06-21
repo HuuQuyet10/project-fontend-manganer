@@ -6,27 +6,32 @@ import {
   UnorderedListOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
+import listRouters from "../../../routes/listRouters";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const items2 = [
   {
-    key: "2",
+    urlpath: "/admin",
     icon: React.createElement(UnorderedListOutlined),
-    label: <Link to="/admin">Quản lý đơn hàng</Link>,
+    label: "Quản lý đơn hàng",
   },
   {
-    key: "3",
+    urlpath: "/user-details",
     icon: React.createElement(UserOutlined),
-    label: <Link to="/user-details">user</Link>,
+    label: "user",
   },
 ];
 
 const SiderBar = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   return (
     <>
       <Sider
+        // collapsible
+        // collapsed={collapsed}
+        // onCollapse={(value) => setCollapsed(value)}
         style={{
           overflow: "auto",
           height: "100vh",
@@ -36,12 +41,23 @@ const SiderBar = () => {
           bottom: 0,
         }}
       >
-        <Menu
-          theme="dark"
-          mode="inline"
-          // defaultSelectedKeys={[location.pathname]}
-          items={items2}
-        />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
+          {
+            listRouters.map((item, index) => {
+              return item.publicSiderBar === true ? (
+                <Menu.Item key={item.urlpath} icon={item.icon}>
+                  <Link to={item.urlpath}>{item.label}</Link>
+                </Menu.Item>
+              ) : null;
+            })
+          }
+          {/* <Menu.Item key="/admin" icon={<UnorderedListOutlined />}>
+            <Link to="/admin">Quản lý đơn hàng</Link>
+          </Menu.Item>
+          <Menu.Item key="/user-details" icon={<UserOutlined />}>
+            <Link to="/user-details">User</Link>
+          </Menu.Item> */}
+        </Menu>
       </Sider>
     </>
   );

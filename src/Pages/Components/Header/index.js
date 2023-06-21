@@ -12,12 +12,12 @@ const HeaderApp = () => {
       }}
     >
       <div className="box_header_attention">
-        <Marquee
+        {/* <Marquee
           pauseOnHover={true}
           speed={90}
         >
           <p className="text-heightLine">Đây là một dự án cá nhân dài hạn nhằm để củng cố kiến thức cá nhân cũng như tích góp những thứ hay ho lên project này chứ không phải mục đích để kinh doanh!!</p>
-        </Marquee>
+        </Marquee> */}
       </div>
     </Header>
   );

@@ -15,6 +15,17 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/admin");
+      window.location.reload(false);
+      message.success('Đăng nhập thành công');
+    } else {
+      message.error('Vui lòng đăng nhập');
+    }
+  }, [navigate]);
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSubmit();
@@ -47,7 +58,7 @@ const Login = () => {
 
   if (userState.user.code === 200) {
     navigate("/admin");
-    window.location.reload(false);
+    window.location.reload(true);
     message.success('Đăng nhập thành công');
   }
 

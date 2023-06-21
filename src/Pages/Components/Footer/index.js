@@ -6,10 +6,17 @@ const FooterApp = () => {
   return (
     <Footer
       style={{
-        textAlign: "center",
+        position: "fixed",
+            left: 200,
+            bottom: 0,
+            width: "calc(100% - 200px)", // Đặt width cho Footer là 100% trừ đi 200px
+            height: "64px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
       }}
     >
-      @Copyright 2022 QuyetPH, All rights reserved
+      @Copyright 2023 QuyetPH, All rights reserved
     </Footer>
   );
 };

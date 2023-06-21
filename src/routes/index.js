@@ -6,28 +6,39 @@ import PrivateOutltet from "../routes/RouterWithPath";
 import Admins from "../Pages/Container/Admins";
 import PageNotFound from "../Pages/Container/PageNotFound";
 import Signup from "../Pages/Container/Signup";
+import listRouters from "./listRouters";
 
 const Routers = () => {
+  console.log(listRouters)
   return (
     <Routes>
       {/* router public */}
-      <Route path="/" element={<Login />} />
+      {/* <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/signup" element={<Signup />} /> */}
 
-      {/* router private  */}
-      <Route element={<PrivateOutltet />}>
+      {/* <Route element={<PrivateOutltet />}>
         <Route path="/user-details" element={<UsersPage />} />
-      </Route>
+      </Route> */}
       {/* <Route element={<PrivateOutltet />}>
         <Route path="/dashboard" element={<Admins />} />
       </Route> */}
-      <Route element={<PrivateOutltet />}>
+      {/* <Route element={<PrivateOutltet />}>
         <Route path="/admin" element={<Admins />} />
-      </Route>
+      </Route> */}
 
       {/* page not found */}
-      <Route path="*" element={<PageNotFound />} />
+      {/* <Route path="*" element={<PageNotFound />} /> */}
+      {
+        listRouters.map((item, index) => {
+          return item.public === false ? (
+            <Route element={<PrivateOutltet />}>
+              <Route path={item.urlpath} element={<item.component />} />
+            </Route>
+          ) : (<Route path={item.urlpath} element={<item.component />} />);
+        })
+      }
+
     </Routes>
   );
 };
