@@ -85,6 +85,31 @@ const listRouters = [
     urlpath: "/list-nft",
     icon: <UnorderedListOutlined />,
     label: "My list NFT",
+    submenu: [
+      {
+        public: false,
+        publicSiderBar: true,
+        component: Loadable({
+          loader: () => import("../Pages/Container/MyListNft"),
+          loading: Loading,
+        }),
+        urlpath: "/list-nft",
+        icon: <UnorderedListOutlined />,
+        label: "My list NFT",
+      },
+      {
+        public: false,
+        publicSiderBar: true,
+        component: Loadable({
+          loader: () => import("../Pages/Container/MyListNft/AddNft/index.js"),
+          loading: Loading,
+        }),
+        urlpath: "/create-nft",
+        icon: <UnorderedListOutlined />,
+        label: "Create my NFT",
+      },
+      // Thêm các submenu khác tại đây
+    ]
   }
 ];
 

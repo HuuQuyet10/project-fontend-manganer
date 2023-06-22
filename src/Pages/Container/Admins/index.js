@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { formatDate, VND } from "../../../services/formatAllMethod";
+import { formatDate, VND } from "../../../utils/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../Components";
 import Additems from "./AddItems";

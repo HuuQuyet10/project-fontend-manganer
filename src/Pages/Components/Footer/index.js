@@ -14,6 +14,7 @@ const FooterApp = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "white"
       }}
     >
       @Copyright 2023 QuyetPH, All rights reserved

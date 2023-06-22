@@ -12,5 +12,12 @@ module.exports = Object.freeze({
         NEW_POST: "/api/v1/posts",
         UPDATE_POST: "/api/v1/posts/update",
         DELETE_POST: "/api/v1/posts/delete/"
+    },
+    PARAMS_LIST_MY_NTF: {
+        GET_NFT: "/api/v1/my-list-nft",
+        GET_NFT_BY_ID: "/api/v1/my-list-nft/:_id",
+        NEW_NFT: "/api/v1/my-list-nft",
+        UPDATE_NFT: "/api/v1/my-list-nft/update",
+        DELETE_NFT: "/api/v1/my-list-nft/delete/"
     }
 })

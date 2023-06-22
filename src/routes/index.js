@@ -31,13 +31,26 @@ const Routers = () => {
       {/* <Route path="*" element={<PageNotFound />} /> */}
       {
         listRouters.map((item, index) => {
-          return item.public === false ? (
-            <Route element={<PrivateOutltet />}>
-              <Route path={item.urlpath} element={<item.component />} />
-            </Route>
-          ) : (<Route path={item.urlpath} element={<item.component />} />);
+          if (item.public === false) {
+            return (
+              <Route key={item.urlpath} element={<PrivateOutltet />}>
+                {item.submenu && item.submenu.length > 0 ? (
+                  item.submenu.map((subItem, subIndex) => (
+                    <Route key={subItem.urlpath} path={subItem.urlpath} element={<subItem.component />} />
+                  ))
+                ) : (
+                  <Route path={item.urlpath} element={<item.component />} />
+                )}
+              </Route>
+            );
+          } else {
+            return (
+              <Route key={item.urlpath} path={item.urlpath} element={<item.component />} />
+            );
+          }
         })
       }
+
 
     </Routes>
   );

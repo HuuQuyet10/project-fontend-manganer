@@ -4,10 +4,12 @@ import bgTop from "../../../assets/bg_top.png"
 import "../../../Styles/Dashboard.scss";
 import {
   UserOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import listRouters from "../../../routes/listRouters";
+import SubMenu from "antd/lib/menu/SubMenu";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -55,19 +57,28 @@ const SiderBar = () => {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
           {
             listRouters.map((item, index) => {
-              return item.publicSiderBar === true ? (
-                <Menu.Item key={item.urlpath} icon={item.icon}>
-                  <Link to={item.urlpath}>{item.label}</Link>
-                </Menu.Item>
-              ) : null;
+              if (item.publicSiderBar === true) {
+                if (item.submenu && item.submenu.length > 0) {
+                  return (
+                    <SubMenu key={item.urlpath} icon={item.icon} title={item.label}>
+                      {item.submenu.map((subItem, subIndex) => (
+                        <Menu.Item key={subItem.urlpath} icon={subItem.icon}>
+                          <Link to={subItem.urlpath}>{subItem.label}</Link>
+                        </Menu.Item>
+                      ))}
+                    </SubMenu>
+                  );
+                } else {
+                  return (
+                    <Menu.Item key={item.urlpath} icon={item.icon}>
+                      <Link to={item.urlpath}>{item.label}</Link>
+                    </Menu.Item>
+                  );
+                }
+              }
+              return null;
             })
           }
-          {/* <Menu.Item key="/admin" icon={<UnorderedListOutlined />}>
-            <Link to="/admin">Quản lý đơn hàng</Link>
-          </Menu.Item>
-          <Menu.Item key="/user-details" icon={<UserOutlined />}>
-            <Link to="/user-details">User</Link>
-          </Menu.Item> */}
         </Menu>
       </Sider>
     </>
