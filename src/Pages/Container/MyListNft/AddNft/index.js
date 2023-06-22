@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Input, Layout, Row, Tooltip, message  } from "antd";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +15,11 @@ const { Content } = Layout;
 
 const AddNft = () => {
   let navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState(null);
   const key = 'updatable';
+  const handleInputChange = (event) => {
+    setImageUrl(event.target.value);
+  };
   const onFinish = async (values) => {
     message.loading({
       content: 'Loading...',
@@ -156,17 +160,20 @@ const AddNft = () => {
                         },
                       ]}
                     >
-                      <Input placeholder="Please input link picture (not upload, file)" />
+                      <Input onChange={handleInputChange} placeholder="Please input link picture (not upload, file)" />
                     </Form.Item>
                   <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">Submit</Button>
+                    <Button type="primary" htmlType="submit" style={{ marginRight: "15px"}}>Submit</Button>
+                    <Link to="/list-nft">
+                      <Button type="primary" danger>Cancel</Button>
+                    </Link>
                   </Form.Item>
                 </Form>
               </Col>
               <Col span={12}>
                 <Tooltip placement="top" title="Pic demo">
                   <img
-                    src={PidcDemo}
+                    src={imageUrl === null ? PidcDemo : imageUrl}
                     style={{
                       marginLeft: "20px",
                       maxWidth: "22vh",
