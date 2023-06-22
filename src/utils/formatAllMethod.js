@@ -16,3 +16,9 @@ export const VND = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND',
 });
+
+export function formatPaturl(pathurl) {
+    const parts = pathurl.split("/");
+    const desiredPart = parts[3];
+    return desiredPart;
+}

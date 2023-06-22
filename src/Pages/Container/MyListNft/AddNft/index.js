@@ -1,22 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Input, Layout, Row, Tooltip, message  } from "antd";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import clientUtils from "../../../../utils/client-utils";
 import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../../Components";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import PidcDemo from "../../../../assets/pic_demo.png";
 import "../index.scss";
-import { requestPost } from "../../../../services/requestMethod";
+import { requestGet, requestPost } from "../../../../services/requestMethod";
 import { DOMAIN_API, PARAMS_LIST_MY_NTF } from "../../../../configs/constanDomain";
 import TextArea from "antd/lib/input/TextArea";
+import { formatPaturl } from "../../../../utils/formatAllMethod";
+import useStateRef from "react-usestateref";
 
 const { Content } = Layout;
 
 const AddNft = () => {
+  const urlLocal = useLocation();
+  const checkPaturl = formatPaturl(urlLocal.pathname);
   let navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState(null);
+  // const [dataItem, setDataItem] = useState();
+  const [dataItem, setDataItem, dataItemRef] = useStateRef();
   const key = 'updatable';
+
+  useEffect(() => {
+    getDatabyId()
+  }, []);
+
+  const getDatabyId = async () => {
+    const url = `${DOMAIN_API + PARAMS_LIST_MY_NTF.GET_NFT_BY_ID + checkPaturl}`;
+    try {
+      const respon = await requestGet(url);
+      setDataItem(respon)
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        console.log("Lỗi 500 - Xử lý lỗi tại đây");
+        navigate("/list-nft");
+      } else {
+        console.log("Có lỗi xảy ra:", error);
+      }
+    }
+  }
+
   const handleInputChange = (event) => {
     setImageUrl(event.target.value);
   };
@@ -56,6 +82,7 @@ const AddNft = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+  console.log(dataItemRef)
   return (
     <Layout hasSider>
       <SiderBar />
@@ -110,7 +137,9 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input
+                      defaultValue={dataItemRef && dataItemRef.current && dataItemRef.current === undefined ? dataItemRef.current.name : ''}
+                    />
                   </Form.Item>
                   <Form.Item label="Description" name="description"
                     rules={[
@@ -130,7 +159,9 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input 
+                      // defaultValue={}
+                    />
                   </Form.Item>
                   <Form.Item label="Total Sell" name="totalSell"
                     rules={[

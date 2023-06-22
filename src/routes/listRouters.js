@@ -101,10 +101,10 @@ const listRouters = [
         public: false,
         publicSiderBar: true,
         component: Loadable({
-          loader: () => import("../Pages/Container/MyListNft/AddNft/index.js"),
+          loader: () => import("../Pages/Container/MyListNft/AddNft"),
           loading: Loading,
         }),
-        urlpath: "/list-nft/create-nft",
+        urlpath: "/list-nft/create-nft/:id?",
         icon: <UnorderedListOutlined />,
         label: "Create my NFT",
       },

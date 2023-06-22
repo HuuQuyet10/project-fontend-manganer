@@ -16,6 +16,11 @@ const { Content } = Layout;
 const Admins = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  const propsToPass = {
+    ADD: "ADD",
+    EDIT: "EDIT",
+    VIEW: "VIEW" 
+  };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
   const [loadingPage, setLoadingPage] = useState(false);
@@ -79,10 +84,7 @@ const Admins = () => {
 
   // edit item 
   const handleEditItem = async (e) => {
-    let paramsId = e;
-    await dispatch(getOnePost(paramsId));
-    setUpdateAddItems("editItems");
-    setIsModalVisible(true);
+    navigate(`/list-nft/create-nft/${e}`);
   }
   const columns = [
     {
@@ -193,7 +195,7 @@ const Admins = () => {
               }}
             />
             <EditTwoTone
-              onClick={(e) => {
+              onClick={() => {
                 handleEditItem(record._id)
               }}
               style={{
