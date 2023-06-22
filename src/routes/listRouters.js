@@ -82,7 +82,7 @@ const listRouters = [
       loader: () => import("../Pages/Container/MyListNft"),
       loading: Loading,
     }),
-    urlpath: "/list-nft",
+    urlpath: "",
     icon: <UnorderedListOutlined />,
     label: "My list NFT",
     submenu: [
@@ -95,7 +95,7 @@ const listRouters = [
         }),
         urlpath: "/list-nft",
         icon: <UnorderedListOutlined />,
-        label: "My list NFT",
+        label: "List NFT",
       },
       {
         public: false,
@@ -104,7 +104,7 @@ const listRouters = [
           loader: () => import("../Pages/Container/MyListNft/AddNft/index.js"),
           loading: Loading,
         }),
-        urlpath: "/create-nft",
+        urlpath: "/list-nft/create-nft",
         icon: <UnorderedListOutlined />,
         label: "Create my NFT",
       },

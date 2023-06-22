@@ -21,6 +21,7 @@ export const getUsers = createAsyncThunk(
       message.success('Đăng nhập thành công');
       localStorage.setItem("accessToken", dataResposive.accessToken);
       localStorage.setItem("refreshtoken", dataResposive.refreshtoken);
+      localStorage.setItem("nameUser", dataResposive.nameUser)
     } else {
         message.error(dataResposive.message);
     }

@@ -3,7 +3,7 @@ import useStateRef from "react-usestateref";
 import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
 import { EditTwoTone, DeleteOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatDate, VND } from "../../../utils/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../Components";
@@ -255,9 +255,9 @@ const Admins = () => {
               <BreadcrumbC nameBreadcrumC="My list NFT"/>
             </div>
             <div className="styles_button_aline">
-              <Button
-                // onClick={checkhshdf}
-              >Create</Button>
+              <Link to="/list-nft/create-nft">
+                <Button>Create</Button>
+              </Link>
             </div>
           </div>
           <>
