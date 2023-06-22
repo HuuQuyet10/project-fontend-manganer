@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import bgTop from "../../../assets/bg_top.png"
 import "../../../Styles/Dashboard.scss";
 import {
   UserOutlined,
@@ -41,6 +42,16 @@ const SiderBar = () => {
           bottom: 0,
         }}
       >
+        <div className="logo">
+          <img
+            alt="bg top"
+            src={bgTop}
+            style={{
+              width: "100%",
+              padding: "17px 10px 8px 10px"
+            }}
+          />
+        </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
           {
             listRouters.map((item, index) => {

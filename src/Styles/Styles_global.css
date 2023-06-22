@@ -1,3 +1,9 @@
-.ant-menu-dark.ant-menu-inline, .ant-menu-dark.ant-menu-vertical, .ant-menu-dark.ant-menu-vertical-left, .ant-menu-dark.ant-menu-vertical-right {
+/* .ant-menu-dark.ant-menu-inline, .ant-menu-dark.ant-menu-vertical, .ant-menu-dark.ant-menu-vertical-left, .ant-menu-dark.ant-menu-vertical-right {
     margin-top: 62px !important;
+} */
+
+.ant-layout .ant-layout-sider {
+    max-width: 250px !important;
+    min-width: 250px !important;
+    width: 250px !important;
 }

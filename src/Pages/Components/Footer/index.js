@@ -7,9 +7,9 @@ const FooterApp = () => {
     <Footer
       style={{
         position: "fixed",
-            left: 200,
+            left: 250,
             bottom: 0,
-            width: "calc(100% - 200px)", // Đặt width cho Footer là 100% trừ đi 200px
+            width: "calc(100% - 250px)", // Đặt width cho Footer là 100% trừ đi 200px
             height: "64px",
             display: "flex",
             alignItems: "center",

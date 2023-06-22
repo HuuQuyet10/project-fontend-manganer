@@ -21,7 +21,7 @@ const MyListNft = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: 200,
+          marginLeft: 250,
         }}
       >
         <HeaderApp />

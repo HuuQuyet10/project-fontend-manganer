@@ -9,6 +9,7 @@ const HeaderApp = () => {
       className="site-layout-background"
       style={{
         padding: 0,
+        height: "74px"
       }}
     >
       <div className="box_header_attention">

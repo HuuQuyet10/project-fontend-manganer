@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formatDate, VND } from "../../../services/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
-import { SiderBar, HeaderApp, FooterApp } from "../../Components";
+import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../Components";
 import Additems from "./AddItems";
 import "../../../Styles/Dashboard.scss";
 
@@ -156,7 +156,7 @@ const Admins = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: 200,
+          marginLeft: 250,
         }}
       >
         <HeaderApp />
@@ -166,8 +166,16 @@ const Admins = () => {
             overflow: "initial",
           }}
         >
-          <div className="styles_button_aline">
-            <Button onClick={handlebutton}>Thêm mới</Button>
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between"
+          }}>
+            <div>
+              <BreadcrumbC nameBreadcrumC="Quản lý đơn hàng"/>
+            </div>
+            <div className="styles_button_aline">
+              <Button onClick={handlebutton}>Thêm mới</Button>
+            </div>
           </div>
           <div>
             <Modal
@@ -185,7 +193,15 @@ const Admins = () => {
           <>
             {
               states.post.loading === false ? <p>Loading...</p> : <>
-                <Table dataSource={states.post.post} columns={columns} {...tableProps} pagination={false}/>
+                <Table
+                  // loading={true}
+                  size="small"
+                  dataSource={states.post.post}
+                  columns={columns}
+                  {...tableProps}
+                  pagination={false}
+                  scroll={{ x: 1800 }}
+                />
                 <div className="box_pagination">
                   <Pagination defaultCurrent={paginationPage} total={states.post.panigatePost.length} onChange={checkOnclickPa}/>
                 </div>
