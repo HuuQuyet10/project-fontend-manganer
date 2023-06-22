@@ -6,7 +6,7 @@ const FooterApp = () => {
   return (
     <Footer
       style={{
-        position: "fixed",
+        // position: "fixed",
             left: 250,
             bottom: 0,
             width: "calc(100% - 250px)", // Đặt width cho Footer là 100% trừ đi 200px

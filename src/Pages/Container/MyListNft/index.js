@@ -7,9 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatDate, VND } from "../../../utils/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../Components";
-import { requestGet } from "../../../services/requestMethod";
+import { requestDelete, requestGet } from "../../../services/requestMethod";
 import "../../../Styles/Dashboard.scss";
-import constanDomain from "../../../configs/constanDomain";
+import constanDomain, { DOMAIN_API, PARAMS_LIST_MY_NTF } from "../../../configs/constanDomain";
 
 const { Content } = Layout;
 
@@ -21,6 +21,7 @@ const Admins = () => {
     EDIT: "EDIT",
     VIEW: "VIEW" 
   };
+  const key = 'updatable';
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
   const [loadingPage, setLoadingPage] = useState(false);
@@ -77,9 +78,34 @@ const Admins = () => {
 
   // handle delete item
   const confirmDelete = async (e) => {
-    const bodyParamster = e;
-    await dispatch(deletePost(bodyParamster));
-    await dispatch(getPost());
+    message.loading({
+      content: 'Loading...',
+      key,
+    });
+    const url = `${DOMAIN_API + PARAMS_LIST_MY_NTF.DELETE_NFT + e}`;
+    try {
+      const respon = await requestDelete(url);
+      if (respon.code === 200) {
+        getData();
+        message.success({
+          content: 'Success!',
+          key,
+          duration: 2,
+        });
+      } else {
+        message.error({
+          content: 'Error!',
+          key,
+          duration: 2,
+        });
+      }
+    } catch (error) {
+      message.error({
+        content: 'Error!',
+        key,
+        duration: 2,
+      });
+    }
   };
 
   // edit item 
@@ -205,11 +231,10 @@ const Admins = () => {
             />
             <Popconfirm
               placement="topRight"
-              title="Bạn có muốn xoá đơn hàng này không?"
-              description="Xoá đơn hàng"
+              title="Delete this NFT ?"
               onConfirm={(e) => {confirmDelete(record._id)}}
-              okText="Xoá"
-              cancelText="Huỷ"
+              okText="Ok"
+              cancelText="Cancel"
             >
               <DeleteOutlined
                 style={{

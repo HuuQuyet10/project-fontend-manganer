@@ -34,12 +34,7 @@ const AddNft = () => {
       const respon = await requestGet(url);
       setDataItem(respon)
     } catch (error) {
-      if (error.response && error.response.status === 500) {
-        console.log("Lỗi 500 - Xử lý lỗi tại đây");
-        navigate("/list-nft");
-      } else {
-        console.log("Có lỗi xảy ra:", error);
-      }
+      console.log("Có lỗi xảy ra:", error);
     }
   }
 
