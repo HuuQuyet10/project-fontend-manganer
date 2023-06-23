@@ -57,23 +57,23 @@ const listRouters = [
     public: false,
     publicSiderBar: true,
     component: Loadable({
+      loader: () => import("../Pages/Container/Dashboard"),
+      loading: Loading,
+    }),
+    urlpath: "/dashboard",
+    icon: <UnorderedListOutlined />,
+    label: "Dashboard",
+  },
+  {
+    public: false,
+    publicSiderBar: false,
+    component: Loadable({
       loader: () => import("../Pages/Container/Admins"),
       loading: Loading,
     }),
     urlpath: "/admin",
     icon: <UnorderedListOutlined />,
     label: "Quản lý đơn hàng",
-  },
-  {
-    public: false,
-    publicSiderBar: true,
-    component: Loadable({
-      loader: () => import("../Pages/Container/Users"),
-      loading: Loading,
-    }),
-    urlpath: "/user",
-    icon: <UnorderedListOutlined />,
-    label: "Trang user",
   },
   {
     public: false,
@@ -113,14 +113,14 @@ const listRouters = [
   },
   {
     public: false,
-    publicSiderBar: false,
+    publicSiderBar: true,
     component: Loadable({
-      loader: () => import("../Pages/Container/MyListNft/EditNft"),
+      loader: () => import("../Pages/Container/Users"),
       loading: Loading,
     }),
-    urlpath: "/list-nft/update-nft/:id?",
+    urlpath: "/user",
     icon: <UnorderedListOutlined />,
-    label: "Edit My NFT",
+    label: "Trang user",
   },
 ];
 

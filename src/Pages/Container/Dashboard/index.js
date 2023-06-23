@@ -32,7 +32,7 @@ const User = () => {
             overflow: "initial",
           }}
         >
-          <p>user</p>
+          <p>admin</p>
         </Content>
         <FooterApp />
       </Layout>
