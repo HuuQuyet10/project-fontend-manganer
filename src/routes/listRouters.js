@@ -115,6 +115,17 @@ const listRouters = [
     public: false,
     publicSiderBar: true,
     component: Loadable({
+      loader: () => import("../Pages/Container/MarketplaceNFT"),
+      loading: Loading,
+    }),
+    urlpath: "/marketplace-nft",
+    icon: <UnorderedListOutlined />,
+    label: "Marketplace NFT",
+  },
+  {
+    public: false,
+    publicSiderBar: true,
+    component: Loadable({
       loader: () => import("../Pages/Container/Users"),
       loading: Loading,
     }),
