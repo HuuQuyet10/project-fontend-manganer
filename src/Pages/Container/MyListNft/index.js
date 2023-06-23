@@ -110,7 +110,12 @@ const Admins = () => {
 
   // edit item 
   const handleEditItem = async (e) => {
-    navigate(`/list-nft/update-nft/${e}`);
+    navigate(`/list-nft/update-nft/${e}`, {replace: true, state: propsToPass.EDIT});
+  }
+
+  //view item
+  const handleViewItem = async (e) => {
+    navigate(`/list-nft/update-nft/${e}`, {replace: true, state: propsToPass.VIEW})
   }
   const columns = [
     {
@@ -215,6 +220,9 @@ const Admins = () => {
               <EditTwoTone />
             </Button> */}
             <EyeTwoTone
+              onClick={() => {
+                handleViewItem(record._id)
+              }}
               style={{
                 fontSize: "22px",
                 marginRight: "10px"

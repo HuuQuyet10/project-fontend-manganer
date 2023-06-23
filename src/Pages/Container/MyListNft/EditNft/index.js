@@ -17,6 +17,7 @@ const { Content } = Layout;
 
 const AddNft = () => {
   const urlLocal = useLocation();
+  const checkViewEdit = urlLocal.state;
   const [form] = Form.useForm();;
   const checkPaturl = formatPaturl(urlLocal.pathname);
   let navigate = useNavigate();
@@ -117,7 +118,7 @@ const AddNft = () => {
             justifyContent: "space-between"
           }}>
             <div>
-              <BreadcrumbC nameBreadcrumC="Create My NFT" />
+              <BreadcrumbC nameBreadcrumC={checkViewEdit === "EDIT" ? "Update My NFT" : "View Details NFT"} />
             </div>
             <Link to="/list-nft">
               <Button type="primary" danger icon={<ArrowLeftOutlined />}>Back</Button>
@@ -150,7 +151,7 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input/>
+                    <Input disabled={checkViewEdit === "EDIT" ? false : true} />
                   </Form.Item>
                   <Form.Item label="Description" name="description"
                     rules={[
@@ -160,7 +161,7 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <TextArea />
+                    <TextArea disabled={checkViewEdit === "EDIT" ? false : true}/>
                   </Form.Item>
                   <Form.Item label="Price" name="price"
                     rules={[
@@ -170,9 +171,7 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input 
-                      // defaultValue={}
-                    />
+                    <Input disabled={checkViewEdit === "EDIT" ? false : true}/>
                   </Form.Item>
                   <Form.Item label="Total Sell" name="totalSell"
                     rules={[
@@ -182,7 +181,7 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input disabled={checkViewEdit === "EDIT" ? false : true}/>
                   </Form.Item>
                   <Form.Item label="Contract NFT" name="contractnft"
                     rules={[
@@ -192,7 +191,7 @@ const AddNft = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input disabled={checkViewEdit === "EDIT" ? false : true}/>
                   </Form.Item>
                   <Form.Item label="Picture NTF" name="linkavatar"
                       rules={[
@@ -202,10 +201,14 @@ const AddNft = () => {
                         },
                       ]}
                     >
-                      <Input onChange={handleInputChange} placeholder="Please input link picture (not upload, file)" />
+                      <Input disabled={checkViewEdit === "EDIT" ? false : true} onChange={handleInputChange} placeholder="Please input link picture (not upload, file)" />
                     </Form.Item>
                   <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit" style={{ marginRight: "15px"}}>Submit</Button>
+                    {
+                      checkViewEdit === "EDIT" ? <>
+                        <Button type="primary" htmlType="submit" style={{ marginRight: "15px"}}>Submit</Button>
+                      </> : null
+                    }
                     <Link to="/list-nft">
                       <Button type="primary" danger>Cancel</Button>
                     </Link>
