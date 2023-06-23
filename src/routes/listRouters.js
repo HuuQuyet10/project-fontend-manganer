@@ -104,13 +104,24 @@ const listRouters = [
           loader: () => import("../Pages/Container/MyListNft/AddNft"),
           loading: Loading,
         }),
-        urlpath: "/list-nft/create-nft/:id?",
+        urlpath: "/list-nft/create-nft",
         icon: <UnorderedListOutlined />,
         label: "Create my NFT",
       },
       // Thêm các submenu khác tại đây
     ]
-  }
+  },
+  {
+    public: false,
+    publicSiderBar: false,
+    component: Loadable({
+      loader: () => import("../Pages/Container/MyListNft/EditNft"),
+      loading: Loading,
+    }),
+    urlpath: "/list-nft/update-nft/:id?",
+    icon: <UnorderedListOutlined />,
+    label: "Edit My NFT",
+  },
 ];
 
 export default listRouters;

@@ -110,7 +110,7 @@ const Admins = () => {
 
   // edit item 
   const handleEditItem = async (e) => {
-    navigate(`/list-nft/create-nft/${e}`);
+    navigate(`/list-nft/update-nft/${e}`);
   }
   const columns = [
     {
