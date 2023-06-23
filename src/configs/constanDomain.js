@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    DOMAIN_API: "https://project-api-nodejs.onrender.com",
+    DOMAIN_API: "http://mynft-quyetph.ap-1.evennode.com",
     PARAMS_USER: {
         REGISTER: "/api/v1/user/register",
         LOGIN: "/api/v1/user/login",
