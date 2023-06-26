@@ -66,17 +66,6 @@ const listRouters = [
   },
   {
     public: false,
-    publicSiderBar: false,
-    component: Loadable({
-      loader: () => import("../Pages/Container/Admins"),
-      loading: Loading,
-    }),
-    urlpath: "/admin",
-    icon: <UnorderedListOutlined />,
-    label: "Quản lý đơn hàng",
-  },
-  {
-    public: false,
     publicSiderBar: true,
     component: Loadable({
       loader: () => import("../Pages/Container/MyListNft"),

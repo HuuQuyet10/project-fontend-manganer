@@ -18,7 +18,7 @@ const Login = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      navigate("/admin");
+      navigate("/list-nft");
       window.location.reload(false);
       message.success('Đăng nhập thành công');
     } else {
@@ -57,7 +57,7 @@ const Login = () => {
   const userState = useSelector((store) => store.user);
 
   if (userState.user.code === 200) {
-    navigate("/admin");
+    navigate("/list-nft");
     window.location.reload(true);
     message.success('Đăng nhập thành công');
   }
