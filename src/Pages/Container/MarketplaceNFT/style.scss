@@ -5,8 +5,8 @@
     border: 1px solid darkseagreen;
     border-radius: 10px;
     .item_name {
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: 600;
+        font-size: 22px;
         margin: 10px 0 0 0;
         line-height: normal;
         text-overflow: ellipsis;
@@ -21,23 +21,23 @@
         border-radius: "12px";
     }
     .item_price {
-        font-size: 14px;
+        font-size: 21px;
         font-weight: 400;
         color: red;
-        margin: 0;
-        line-height: normal;
+        margin: 11px 0px;
+        line-height: 21px;
     }
     .item_total_sell {
-        font-size: 14px;
+        font-size: 19px;
         font-weight: 400;
         margin: 0;
         line-height: normal;
 
     }
     .item_description {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
-        margin: 0;
+        margin: 11px 0px;
         line-height: normal;
         text-align: left;
         text-overflow: ellipsis;
@@ -45,5 +45,38 @@
         overflow: hidden;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+    }
+}
+.body_item:nth-child(n+6) {
+    margin-top: 25px;
+}
+.body_item:nth-last-child(-n+5) {
+    margin-bottom: 20px;
+}
+.box_icon {
+    text-align: center;
+    .icon_warning {
+        width: 70px;
+        height: 70px;
+    }
+}
+.check_buy {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 0px;
+    margin: 27px 0px 29px 0px;
+    text-align: center;
+}
+.txt_suggest {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px 0px 20px;
+}
+.footer_dialog_confimn {
+    display: flex;
+    justify-content: center;
+    button:nth-child(1) {
+        margin-right: 10px;
     }
 }

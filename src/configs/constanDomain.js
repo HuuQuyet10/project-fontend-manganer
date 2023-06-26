@@ -20,5 +20,9 @@ module.exports = Object.freeze({
         UPDATE_NFT: "/api/v1/my-list-nft/update",
         DELETE_NFT: "/api/v1/my-list-nft/delete/",
         SEARCH_NFT_NAME: "/api/v1/my-list-nft/search/",
+    },
+    PUBLIC_SALE_NFT: {
+        GET_LIST_NFT: "/api/v1/list-nft-public-sale",
+        UPDATE_NFT_BY_ID: "/api/v1/list-nft-public-sale/update"
     }
 })

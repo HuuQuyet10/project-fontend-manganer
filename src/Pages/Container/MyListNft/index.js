@@ -43,7 +43,6 @@ const Admins = () => {
   const [statePage, setStatePage, statePageRef] = useStateRef(1);
   const [dataPage, setDataPage] = useState();
 
-  const states = useSelector((store) => store);
 
   const getData = async () => {
     setLoadingPage(true)
@@ -60,14 +59,14 @@ const Admins = () => {
       }
     } catch (error) {
       console.log(error);
-      setLoadingPage(false);
+      if (error.response && error.response.status === 401) {
+        localStorage.clear();
+        window.location.reload(false);
+      } else {
+        setLoadingPage(false);
+      }
     }
   };
-  if (states.post.errorMessage === "Request failed with status code 401") {
-    localStorage.clear()
-    window.location.reload(false);
-  } else {
-  }
   const handlebutton = () => {
     setUpdateAddItems("addItems");
     setIsModalVisible(true);
