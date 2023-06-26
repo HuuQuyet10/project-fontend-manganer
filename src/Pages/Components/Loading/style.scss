@@ -1,31 +1,34 @@
-.admin-loading {
-  align-items: center;
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  margin: 20px;
-  .lds-dual-ring {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3; /* Màu viền của spinner */
+  border-top: 4px solid #3498db; /* Màu viền trên cùng của spinner */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite; /* Animation để xoay spinner */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  .lds-dual-ring:after {
-    content: " ";
-    display: block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border-radius: 50%;
-    border: 6px solid #3498db;
-    border-color: #3498db transparent #3498db transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+  100% {
+    transform: rotate(360deg);
   }
-  @keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+}
+
+#content {
+  /* CSS cho nội dung của màn hình chính */
 }

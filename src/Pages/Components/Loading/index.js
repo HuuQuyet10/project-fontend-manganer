@@ -1,12 +1,14 @@
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin } from 'antd';
-const antIcon = (
-  <LoadingOutlined
-    style={{
-      fontSize: 24,
-    }}
-    spin
-  />
-);
-const Loading = () => <Spin indicator={antIcon} />;
+import React from 'react';
+import "./style.scss";
+
+const Loading = () => {
+  return (
+    <>
+      <div id="loading-screen">
+        <div class="loading-spinner"></div>
+      </div>
+    </>
+  );
+}
+
 export default Loading;

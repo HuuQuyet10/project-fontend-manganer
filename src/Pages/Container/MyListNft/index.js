@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import useStateRef from "react-usestateref";
-import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message} from "antd";
-import { EditTwoTone, DeleteOutlined, EyeTwoTone } from "@ant-design/icons";
+import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message, Space} from "antd";
+import { EditTwoTone, DeleteOutlined, EyeTwoTone, SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { formatDate, VND } from "../../../utils/formatAllMethod";
 import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
-import { SiderBar, HeaderApp, FooterApp, BreadcrumbC } from "../../Components";
+import { SiderBar, HeaderApp, FooterApp, BreadcrumbC, Loading } from "../../Components";
 import { requestDelete, requestGet } from "../../../services/requestMethod";
 import "../../../Styles/Dashboard.scss";
 import constanDomain, { DOMAIN_API, PARAMS_LIST_MY_NTF } from "../../../configs/constanDomain";
@@ -22,6 +22,7 @@ const Admins = () => {
     VIEW: "VIEW" 
   };
   const key = 'updatable';
+  const itemsPerPage = 10;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bordered, setBordered] = useState(true);
   const [loadingPage, setLoadingPage] = useState(false);
@@ -49,7 +50,6 @@ const Admins = () => {
     try {
       const url = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_LIST_MY_NTF.GET_NFT + `?page=${statePageRef.current}&size=10`}`;
       const respon = await requestGet(url);
-      console.log(respon, "kkkkkkkkkkkkk");
       if (respon.code === 200) {
         setDataPage(respon.data);
         setTotalItem(respon.total)
@@ -116,20 +116,93 @@ const Admins = () => {
   //view item
   const handleViewItem = async (e) => {
     navigate(`/list-nft/update-nft/${e}`, {replace: true, state: propsToPass.VIEW})
-  }
+  };
+  const handleSearch = async (selectedKeys, confirm, dataIndex) => {
+    const bodyParamster = selectedKeys[0];
+    let url = '';
+
+    if (bodyParamster === null || bodyParamster === undefined) {
+      url = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_LIST_MY_NTF.GET_NFT}?page=${statePageRef.current}&size=10`;
+    } else {
+      url = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_LIST_MY_NTF.SEARCH_NFT_NAME + `${bodyParamster}`}`;
+    }
+    try {
+      const respon = await requestGet(url);
+      if (respon.code === 200) {
+        setDataPage(respon.data);
+        setTotalItem(respon.total)
+      } else {
+        console.log(respon);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoadingPage(false);
+    }
+    // confirm();
+    // setSearchText(selectedKeys[0]);
+    // setSearchedColumn(dataIndex);
+  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          // ref={searchInput}
+          placeholder={`Search name`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space style={{
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
+          <Button
+            type="primary"
+            // onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            type="primary"
+            size="small"
+            // onClick={() => {
+            //   close();
+            // }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    )
+  });
   const columns = [
     {
       title: 'ID',
       key: 'index',
-      render: (text, record, index) => index + 1,
       width: '5%',
-      align: "center"
+      align: "center",
+      render: (text, record, index) => ((statePageRef.current - 1) * itemsPerPage) + index + 1,
     },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       width: '10%',
+      ...getColumnSearchProps('name')
     },
     { 
       title: 'Price',
@@ -156,7 +229,7 @@ const Admins = () => {
       title: 'Date buy',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      width: '10%',
+      width: '8%',
       render: (item, record) => {
         return (
           <>
@@ -183,7 +256,7 @@ const Admins = () => {
       title: 'Picture NTF',
       dataIndex: 'linkavatar',
       key: 'linkavatar',
-      width: '15%',
+      width: '10%',
       render: (item, record) => {
         return (
           <>
@@ -262,8 +335,9 @@ const Admins = () => {
   };
   const checkOnclickPa = async (e) => {
     const bodyParamster = e;
-    setPaginationPage(e)
-    await dispatch(getPost(bodyParamster));
+    setPaginationPage(bodyParamster);
+    setStatePage(bodyParamster)
+    getData();
   };
   return (
     <Layout hasSider>
@@ -297,7 +371,7 @@ const Admins = () => {
           </div>
           <>
             {
-              loadingPage === true ? <p>Loading...</p> : <>
+              loadingPage === true ? <Loading /> : <>
                 <Table
                   // loading={true}
                   size="small"
