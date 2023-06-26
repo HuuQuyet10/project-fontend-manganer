@@ -113,6 +113,17 @@ const listRouters = [
   },
   {
     public: false,
+    publicSiderBar: false,
+    component: Loadable({
+      loader: () => import("../Pages/Container/MyListNft/EditNft"),
+      loading: Loading,
+    }),
+    urlpath: "/list-nft/update-nft/:_id",
+    icon: <UnorderedListOutlined />,
+    label: "Action NFT",
+  },
+  {
+    public: false,
     publicSiderBar: true,
     component: Loadable({
       loader: () => import("../Pages/Container/MarketplaceNFT"),
