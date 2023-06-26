@@ -1,0 +1,49 @@
+.body_item {
+    text-align: center !important;
+    margin: 0px 23px 0px 0px;
+    padding: 17px;
+    border: 1px solid darkseagreen;
+    border-radius: 10px;
+    .item_name {
+        font-weight: 500;
+        font-size: 15px;
+        margin: 10px 0 0 0;
+        line-height: normal;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    .item_thumb {
+        width: 81px;
+        height: 81;
+        border-radius: "12px";
+    }
+    .item_price {
+        font-size: 14px;
+        font-weight: 400;
+        color: red;
+        margin: 0;
+        line-height: normal;
+    }
+    .item_total_sell {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        line-height: normal;
+
+    }
+    .item_description {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        line-height: normal;
+        text-align: left;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+}
