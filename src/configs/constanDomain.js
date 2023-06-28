@@ -24,5 +24,9 @@ module.exports = Object.freeze({
     PUBLIC_SALE_NFT: {
         GET_LIST_NFT: "/api/v1/list-nft-public-sale",
         UPDATE_NFT_BY_ID: "/api/v1/list-nft-public-sale/update"
+    },
+    GET_DASHBOARD: {
+        TOTAL_NUMBER_ETH: "/api/v1/total-sum",
+        GET_CHART_DATA: "/api/v1/total-sum/get-sort-dashboard"
     }
 })

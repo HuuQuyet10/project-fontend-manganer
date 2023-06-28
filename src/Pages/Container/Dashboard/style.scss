@@ -1,0 +1,251 @@
+.body_main_dashboard {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-bottom: 15px;
+}
+.box_sort_date_show_chart {
+    display: flex;
+    margin: 20px 0;
+    p {
+        font-size: 19px;
+        font-weight: 600;
+        margin: 0 15px 0 0;
+    }
+}
+.title_my_card {
+    font-size: 27px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+.col_infor_card {
+   padding: 0 0 0 40px;
+}
+.my_card_dashboard {
+    border-radius: 32px;
+    background: linear-gradient(43deg, #7942FB 0%, #B091F9 100%);
+    padding: 30px;
+    .title_balance {
+        color: #FFF;
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0;
+    }
+    .balance_number {
+        color: #FFF;
+        font-size: 37px;
+        line-height: 37px;
+        font-weight: 800;
+        margin: 30px 0;
+    }
+    .title_profit {
+        color: #FFF;
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+    }
+    .box_profit {
+        display: flex;
+        justify-content: space-between;
+        p:nth-child(1) {
+            font-size: 23px;
+            line-height: 23px;
+            font-weight: 500;
+            color: #FFF;
+            margin: 0px;
+        }
+        p:nth-child(2) {
+            font-size: 15px;
+            line-height: 15px;
+            font-weight: 500;
+            color: #FFF;
+            margin: 0px;
+            padding: 3px 9px;
+            border-radius: 61.25px;
+            background: rgba(255, 255, 255, 0.23);
+            backdrop-filter: blur(71.05000305175781px);
+        }
+    }
+}
+.title_top_picks {
+    font-size: 27px;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+}
+.body_owned {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.body_nft_owned {
+    .owned_title {
+        display: flex;
+        justify-content: space-between;
+        p {
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 27px;
+            margin: 20px 0;
+        }
+        a {
+            font-size: 31px;
+            font-weight: bold;
+        }
+    }
+}
+.body_top_picks {
+    border-left: 5px solid #ED5B75;
+    padding: 0 0 0 13px;
+    margin: 0 0 30px 0;
+    .title_top_item {
+        font-size: 20px;
+        margin: 0px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+    .item_targer_price {
+        margin: 10px 0 0 0;
+        display: flex;
+        justify-content: space-between;
+        p {
+            font-size: 16px;
+            line-height: 16px;
+            margin: 0px;
+        }
+    }
+}
+.item_nft_owned {
+    background-color: white;
+    padding: 10px 18px;
+    border-radius: 13px;
+    margin-bottom: 10px;
+    .top_nft_owned {
+         display: flex;
+        justify-content: space-between;
+        p {
+            font-size: 26px;
+            font-weight: 100;
+            margin: 0;
+        }
+        img {
+            width: 61px;
+        }
+    }
+    .nft_chart_target {
+        display: flex;
+        justify-content: space-between;
+        .profit_eth {
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+            color: #4FDFB1;
+            // line-height: 16px;
+        }
+    }
+}
+.nft_owned_content {
+    display: flex;
+    img {
+        width: 27px;
+        height: 27px;
+    }
+    .volumn_eth {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 0 10px;
+    }
+}
+.title_invest_star {
+    font-size: 27px;
+    font-weight: 600;
+    margin: 12px 0 9px 0;
+}
+.body_invest {
+    display: flex;
+    margin: 0 0 37px 0;
+    .invest_icon {
+        background-color: #FBB142;
+        color: white;
+        padding: 15px;
+        line-height: 0px;
+        border-radius: 11px;
+        margin: 0;
+    }
+    .invest_icon_time {
+        background-color: #4FDFB1;
+        color: white;
+        padding: 15px;
+        line-height: 0px;
+        border-radius: 11px;
+        margin: 0;
+    }
+    .invest_icon_money {
+        background-color: #ED5B75;
+        color: white;
+        padding: 15px;
+        line-height: 0px;
+        border-radius: 11px;
+        margin: 0;
+    }
+    .invest_number {
+        margin-left: 12px;
+        .title_number_invest {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 5px 0 0 0;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        .content_invest_number {
+            display: flex;
+            img {
+                width: 32px;
+                height: 32px;
+            }
+            .value_eth_gold {
+                color: #FBB142;
+            }
+            .value_eth_blue {
+                color: #4FDFB1;
+            }
+            .value_eth_red {
+                color: #ED5B75;
+            }
+            p {
+                font-size: 20px;
+                margin: 0px;
+            }
+        }
+    }
+}
+.pic_chart_demo {
+    display: flex;
+    img {
+        margin-left: 63px;
+    }
+    .min_max_chart {
+        margin: 0 0 0 20px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+}
+.content_invest_start {
+    display: flex;
+    background-color: white;
+    padding: 23px 23px 0 23px;
+    border-radius: 10px;
+}
+.body_investment_stats {
+    padding: 0 0 0 20px;
+}
