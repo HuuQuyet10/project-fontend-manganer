@@ -14,24 +14,34 @@ import constanDomain from "../../../configs/constanDomain";
 import { requestGet } from "../../../services/requestMethod";
 import "./style.scss";
 import { FieldTimeOutlined, MoneyCollectOutlined, TransactionOutlined } from "@ant-design/icons";
+import { priceETH } from "../../../utils/formatAllMethod";
 
 const { Content } = Layout;
 
 const User = () => {
   const [loadingPage, setLoadingPage] = useState(false);
   const [dataPage, setDataPage] = useState([]);
+  const [dataListNft, setDataListNft] = useState([]);
+  const [ethAmount, setEthAmount] = useState([]);
   const [itemDate, setItemDate] = useState('1m');
   useEffect(() => {
     getData();
+    getListNftOwned();
   }, [itemDate]);
 
   const getData = async () => {
     setLoadingPage(true)
     try {
       const url = `${constanDomain.DOMAIN_API + constanDomain.GET_DASHBOARD.GET_CHART_DATA}?timeRange=${itemDate}`;
+      const urlSum = `${constanDomain.DOMAIN_API + constanDomain.GET_DASHBOARD.TOTAL_NUMBER_ETH}`;
       const respon = await requestGet(url);
+      const responSum = await requestGet(urlSum);
       if (respon.code === 200) {
         setDataPage(respon.data);
+        setLoadingPage(false);
+      }
+      if (responSum) {
+        setEthAmount(responSum.totalValue);
         setLoadingPage(false);
       } else {
         console.log(respon);
@@ -47,6 +57,28 @@ const User = () => {
       }
     }
   };
+  const getListNftOwned = async () => {
+    setLoadingPage(true)
+    try {
+      const url = `${constanDomain.DOMAIN_API + constanDomain.PARAMS_LIST_MY_NTF.GET_NFT}?page=1&size=4`;
+      const responListNft = await requestGet(url);
+      if (responListNft.code === 200) {
+        setDataListNft(responListNft.data);
+        setLoadingPage(false);
+      } else {
+        console.log(responListNft);
+        setLoadingPage(false);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        localStorage.clear();
+        window.location.reload(false);
+      } else {
+        setLoadingPage(false);
+      }
+    }
+  }
   const handleChange = (e) => {
     setItemDate(e);
   };
@@ -113,65 +145,29 @@ const User = () => {
                           </Link>
                         </div>
                         <div className="list_item_nft_owned">
-                          <div className="item_nft_owned">
-                            <div className="top_nft_owned">
-                              <p>Roma Avenue</p>
-                              <img src={IconSong} alt="icon_eth" />
-
-                            </div>
-                            <div className="nft_chart_target">
-                              <div className="nft_owned_content">
-                                <img src={IconEth} alt="icon_eth" />
-                                <p className="volumn_eth">0.91 Ether</p>
-                              </div>
-                              <p className="profit_eth">+10%</p>
-                            </div>
-                          </div>
-                          {/* ======================================= */}
-                          <div className="item_nft_owned">
-                            <div className="top_nft_owned">
-                              <p>Roma Avenue</p>
-                              <img src={IconSong} alt="icon_eth" />
-
-                            </div>
-                            <div className="nft_chart_target">
-                              <div className="nft_owned_content">
-                                <img src={IconEth} alt="icon_eth" />
-                                <p className="volumn_eth">0.91 Ether</p>
-                              </div>
-                              <p className="profit_eth">+10%</p>
-                            </div>
-                          </div>
-                          {/* ======================================= */}
-                          <div className="item_nft_owned">
-                            <div className="top_nft_owned">
-                              <p>Roma Avenue</p>
-                              <img src={IconSong} alt="icon_eth" />
-
-                            </div>
-                            <div className="nft_chart_target">
-                              <div className="nft_owned_content">
-                                <img src={IconEth} alt="icon_eth" />
-                                <p className="volumn_eth">0.91 Ether</p>
-                              </div>
-                              <p className="profit_eth">+10%</p>
-                            </div>
-                          </div>
-                          {/* ======================================= */}
-                          <div className="item_nft_owned">
-                            <div className="top_nft_owned">
-                              <p>Roma Avenue</p>
-                              <img src={IconSong} alt="icon_eth" />
-
-                            </div>
-                            <div className="nft_chart_target">
-                              <div className="nft_owned_content">
-                                <img src={IconEth} alt="icon_eth" />
-                                <p className="volumn_eth">0.91 Ether</p>
-                              </div>
-                              <p className="profit_eth">+10%</p>
-                            </div>
-                          </div>
+                          {
+                            dataListNft.map((item, index) => {
+                              return (
+                                <Link to={`/list-nft/update-nft/${item._id}`}>
+                                  <a href={`/list-nft/update-nft/${item._id}`}>
+                                      <div className="item_nft_owned">
+                                      <div className="top_nft_owned">
+                                        <p>{item.name}</p>
+                                        <img src={IconSong} alt="icon_eth" />
+                                      </div>
+                                      <div className="nft_chart_target">
+                                        <div className="nft_owned_content">
+                                          <img src={IconEth} alt="icon_eth" />
+                                          <p className="volumn_eth">{item.price} Ether</p>
+                                        </div>
+                                        <p className="profit_eth">+10%</p>
+                                      </div>
+                                    </div>
+                                  </a>
+                                </Link>
+                              )
+                            })
+                          }
                         </div>
                       </div>
                       <div className="body_investment_stats">
@@ -233,10 +229,10 @@ const User = () => {
                       <p className="title_my_card">My card</p>
                       <div className="my_card_dashboard">
                         <p className="title_balance">Balance</p>
-                        <p className="balance_number">$50.000</p>
+                        <p className="balance_number">$ {priceETH(ethAmount).toFixed(3)} <span>({Number(ethAmount).toFixed(5)} ETH)</span></p>
                         <p className="title_profit">Monthly Profit</p>
                         <div className="box_profit">
-                          <p>$14,225</p>
+                          <p>$1,225</p>
                           <p>+10%</p>
                         </div>
                       </div>

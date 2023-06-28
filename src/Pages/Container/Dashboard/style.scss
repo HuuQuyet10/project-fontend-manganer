@@ -1,3 +1,17 @@
+.list_item_nft_owned {
+    a {
+        color: black;
+    }
+    a:hover {
+        color: red;
+        a {
+            .item_nft_owned {
+                border: 1px solid red;
+                margin: -1px -1px 9px -1px;
+            }
+        }
+    }
+}
 .body_main_dashboard {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -37,6 +51,10 @@
         line-height: 37px;
         font-weight: 800;
         margin: 30px 0;
+        span {
+            font-size: 18px;
+            font-weight: 400;
+        }
     }
     .title_profit {
         color: #FFF;

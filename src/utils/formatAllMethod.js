@@ -22,3 +22,10 @@ export function formatPaturl(pathurl) {
     const desiredPart = parts[3];
     return desiredPart;
 }
+
+
+const ethPrice = 1.868;
+export function priceETH(ethAmount) {
+    const usdAmount = ethAmount * ethPrice;
+    return usdAmount;
+}
