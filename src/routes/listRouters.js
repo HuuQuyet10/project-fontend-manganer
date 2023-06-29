@@ -3,12 +3,18 @@ import Loadable from "react-loadable";
 import Loading from "../Pages/Components/Loading"
 import {
   UserOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  DashboardOutlined,
+  BarsOutlined,
+  PlusCircleOutlined,
+  EditOutlined,
+  BankOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 
 const listRouters = [
-  // public: là để moi người truy cập vào hay cần phải đăng nhập thì mới xem được
-  // publicSiderBar: là để cho component đó hiện trên siderbar hay là chỉ hiện ở ngoài, ví dụ như trang login, signup, hoặc page notfound
+  // public: là để moi người truy cập vào hay cần phải đăng nhập thì mới truy cập được
+  // publicSiderBar: là để cho component đó hiện trên siderbar hay là chỉ hiện ở ngoài, ví dụ như trang login, signup, hoặc page notfound đều publicSiderBar = false
   {
     public: true,
     publicSiderBar: false,
@@ -61,7 +67,7 @@ const listRouters = [
       loading: Loading,
     }),
     urlpath: "/dashboard",
-    icon: <UnorderedListOutlined />,
+    icon: <DashboardOutlined />,
     label: "Dashboard",
   },
   {
@@ -72,7 +78,7 @@ const listRouters = [
       loading: Loading,
     }),
     urlpath: "",
-    icon: <UnorderedListOutlined />,
+    icon: <BarsOutlined />,
     label: "My list NFT",
     submenu: [
       {
@@ -94,7 +100,7 @@ const listRouters = [
           loading: Loading,
         }),
         urlpath: "/list-nft/create-nft",
-        icon: <UnorderedListOutlined />,
+        icon: <PlusCircleOutlined />,
         label: "Create my NFT",
       },
       // Thêm các submenu khác tại đây
@@ -108,7 +114,7 @@ const listRouters = [
       loading: Loading,
     }),
     urlpath: "/list-nft/update-nft/:_id",
-    icon: <UnorderedListOutlined />,
+    icon: <EditOutlined />,
     label: "Action NFT",
   },
   {
@@ -119,7 +125,7 @@ const listRouters = [
       loading: Loading,
     }),
     urlpath: "/marketplace-nft",
-    icon: <UnorderedListOutlined />,
+    icon: <BankOutlined />,
     label: "Marketplace NFT",
   },
   {
@@ -130,8 +136,8 @@ const listRouters = [
       loading: Loading,
     }),
     urlpath: "/user",
-    icon: <UnorderedListOutlined />,
-    label: "Trang user",
+    icon: <SettingOutlined />,
+    label: "Settings",
   },
 ];
 
