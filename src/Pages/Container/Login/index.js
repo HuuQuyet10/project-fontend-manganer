@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <div className="content-form">
       <div class="form">
-        <div class="header">Đăng nhập</div>
+        <div class="header">Login</div>
         <div class="inputs">
           <input
             placeholder="Email"
@@ -89,9 +89,9 @@ const Login = () => {
             <p>/</p>
             <p>Pass: 12345</p>
           </div>
-          <button class="sigin-btn" onClick={handleSubmit}>Đăng nhập</button>
-          <a class="forget" href="#">Quên password ?</a>
-          <p class="signup-link">Bạn chưa có tài khoản? <a href="#">Đăng ký</a></p>
+          <button class="sigin-btn" onClick={handleSubmit}>Login</button>
+          {/* <a class="forget" href="#">Quên password ?</a>
+          <p class="signup-link">Bạn chưa có tài khoản? <a href="#">Đăng ký</a></p> */}
         </div>
       </div>
     </div>

@@ -37,17 +37,17 @@ const listRouters = [
     icon: <UnorderedListOutlined />,
     label: "Login",
   },
-  {
-    public: true,
-    publicSiderBar: false,
-    component: Loadable({
-      loader: () => import("../Pages/Container/Signup"),
-      loading: Loading,
-    }),
-    urlpath: "/signup",
-    icon: <UnorderedListOutlined />,
-    label: "Signup",
-  },
+  // {
+  //   public: true,
+  //   publicSiderBar: false,
+  //   component: Loadable({
+  //     loader: () => import("../Pages/Container/Signup"),
+  //     loading: Loading,
+  //   }),
+  //   urlpath: "/signup",
+  //   icon: <UnorderedListOutlined />,
+  //   label: "Signup",
+  // },
   {
     public: true,
     publicSiderBar: false,
