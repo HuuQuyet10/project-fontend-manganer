@@ -7,9 +7,9 @@ const BreadcrumbC = (props) => {
     return (
         <Breadcrumb>
             <Breadcrumb.Item>
-                <Link to="/" style={{fontSize: "21px", fontWeight: "600", textDecoration: "underline"}}>Dashboard</Link>
+                <Link to="/" style={{ fontSize: "21px", fontWeight: "600", textDecoration: "underline" }}>Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item style={{fontSize: "21px", fontWeight: "600", textDecoration: "underline"}}>{nameBreadcrumC}</Breadcrumb.Item>
+            <Breadcrumb.Item style={{ fontSize: "21px", fontWeight: "600", textDecoration: "underline" }}>{nameBreadcrumC}</Breadcrumb.Item>
         </Breadcrumb>
     );
 }

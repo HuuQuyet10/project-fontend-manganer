@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useStateRef from "react-usestateref";
-import {Layout, Button, Table, Modal, Input, Form, Pagination, Popconfirm, message, Space} from "antd";
+import { Layout, Button, Table, Input, Pagination, Popconfirm, message, Space } from "antd";
 import { EditTwoTone, DeleteOutlined, EyeTwoTone, SearchOutlined } from "@ant-design/icons";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { formatDate, VND } from "../../../utils/formatAllMethod";
-import { createPost, deletePost, getOnePost, getPanigate, getPost } from "../../../redux/slices/Post";
+import { formatDate } from "../../../utils/formatAllMethod";
+import { getPanigate, getPost } from "../../../redux/slices/Post";
 import { SiderBar, HeaderApp, FooterApp, BreadcrumbC, Loading } from "../../Components";
 import { requestDelete, requestGet } from "../../../services/requestMethod";
 import "../../../Styles/Dashboard.scss";
@@ -19,7 +19,7 @@ const Admins = () => {
   const propsToPass = {
     ADD: "ADD",
     EDIT: "EDIT",
-    VIEW: "VIEW" 
+    VIEW: "VIEW"
   };
   const key = 'updatable';
   const itemsPerPage = 10;
@@ -29,17 +29,16 @@ const Admins = () => {
   const [paginationPage, setPaginationPage] = useState(1);
   const [updateAddItems, setUpdateAddItems] = useState("deleteItems");
   const [totalItem, setTotalItem] = useState(0);
-  const logoutPage = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+
+
   useEffect(() => {
     const bodyParamster = 1;
     dispatch(getPost(bodyParamster));
     dispatch(getPanigate());
-
     getData();
   }, []);
+
+
   const [statePage, setStatePage, statePageRef] = useStateRef(1);
   const [dataPage, setDataPage] = useState();
 
@@ -67,13 +66,8 @@ const Admins = () => {
       }
     }
   };
-  const handlebutton = () => {
-    setUpdateAddItems("addItems");
-    setIsModalVisible(true);
-  }
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+
+
 
   // handle delete item
   const confirmDelete = async (e) => {
@@ -109,13 +103,14 @@ const Admins = () => {
 
   // edit item 
   const handleEditItem = async (e) => {
-    navigate(`/list-nft/update-nft/${e}`, {replace: true, state: propsToPass.EDIT});
+    navigate(`/list-nft/update-nft/${e}`, { replace: true, state: propsToPass.EDIT });
   }
 
   //view item
   const handleViewItem = async (e) => {
-    navigate(`/list-nft/update-nft/${e}`, {replace: true, state: propsToPass.VIEW})
+    navigate(`/list-nft/update-nft/${e}`, { replace: true, state: propsToPass.VIEW })
   };
+
   const handleSearch = async (selectedKeys, confirm, dataIndex) => {
     const bodyParamster = selectedKeys[0];
     let url = '';
@@ -137,10 +132,9 @@ const Admins = () => {
       console.log(error);
       setLoadingPage(false);
     }
-    // confirm();
-    // setSearchText(selectedKeys[0]);
-    // setSearchedColumn(dataIndex);
   };
+
+
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div
@@ -178,9 +172,9 @@ const Admins = () => {
           <Button
             type="primary"
             size="small"
-            // onClick={() => {
-            //   close();
-            // }}
+          // onClick={() => {
+          //   close();
+          // }}
           >
             close
           </Button>
@@ -188,6 +182,8 @@ const Admins = () => {
       </div>
     )
   });
+
+
   const columns = [
     {
       title: 'ID',
@@ -203,19 +199,12 @@ const Admins = () => {
       width: '10%',
       ...getColumnSearchProps('name')
     },
-    { 
+    {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
       width: '5%',
       align: "center"
-      // render: (item, record) => {
-      //   return (
-      //     <>
-      //       <p>{VND.format(record.GiaTien)}</p>
-      //     </>
-      //   )
-      // }
     },
     {
       title: 'Total Sell',
@@ -282,15 +271,6 @@ const Admins = () => {
       render: (item, record) => {
         return (
           <div>
-            {/* <Button
-              onClick={(e) => {
-                handleEditItem(record._id)
-              }}
-              type="primary"
-              className='styles__input_update_add'
-            >
-              <EditTwoTone />
-            </Button> */}
             <EyeTwoTone
               onClick={() => {
                 handleViewItem(record._id)
@@ -312,7 +292,7 @@ const Admins = () => {
             <Popconfirm
               placement="topRight"
               title="Delete this NFT ?"
-              onConfirm={(e) => {confirmDelete(record._id)}}
+              onConfirm={(e) => { confirmDelete(record._id) }}
               okText="Ok"
               cancelText="Cancel"
             >
@@ -328,16 +308,19 @@ const Admins = () => {
       }
     }
   ]
+
+
   const tableProps = { bordered };
-  const handleOk = (values) => {
-    setIsModalVisible(false);
-  };
+
+
   const checkOnclickPa = async (e) => {
     const bodyParamster = e;
     setPaginationPage(bodyParamster);
     setStatePage(bodyParamster)
     getData();
   };
+
+
   return (
     <Layout hasSider>
       <SiderBar />
@@ -360,7 +343,7 @@ const Admins = () => {
             justifyContent: "space-between"
           }}>
             <div>
-              <BreadcrumbC nameBreadcrumC="My list NFT"/>
+              <BreadcrumbC nameBreadcrumC="My list NFT" />
             </div>
             <div className="styles_button_aline">
               <Link to="/list-nft/create-nft">

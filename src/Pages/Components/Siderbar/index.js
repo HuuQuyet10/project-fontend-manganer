@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import bgTop from "../../../assets/bg_top.png"
-import "../../../Styles/Dashboard.scss";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Layout, Menu } from "antd";
 import {
   UserOutlined,
-  UnorderedListOutlined,
-  SettingOutlined
+  UnorderedListOutlined
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import bgTop from "../../../assets/bg_top.png";
+import "../../../Styles/Dashboard.scss";
 import listRouters from "../../../routes/listRouters";
 import SubMenu from "antd/lib/menu/SubMenu";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 const items2 = [
   {
@@ -28,7 +27,9 @@ const items2 = [
 
 const SiderBar = () => {
   const [collapsed, setCollapsed] = useState(false);
+
   const location = useLocation();
+
   return (
     <>
       <Sider

@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import constanDomain from "../../configs/constanDomain";
-import clientUtils from "../../utils/client-utils";
-import { useNavigate } from "react-router-dom";
-import { notification, message } from "antd";
+import { message } from "antd";
 import axios from "axios";
 
 const initialState = {

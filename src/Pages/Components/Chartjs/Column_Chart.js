@@ -2,7 +2,6 @@ import React from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import "./style.scss";
 
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const ColumnChart = (props) => {
@@ -25,9 +24,7 @@ const ColumnChart = (props) => {
   }
   return (
     <div>
-      <CanvasJSChart options={options}
-      /* onRef = {ref => this.chart = ref} */
-      />
+      <CanvasJSChart options={options}/>
     </div>
   );
 }

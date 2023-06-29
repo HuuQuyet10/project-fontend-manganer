@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import constanDomain from "../../configs/constanDomain";
+import { createSlice } from "@reduxjs/toolkit";
 import clientUtils from "../../utils/client-utils";
 
 const initialState = {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import md5 from "md5";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUpUser } from "../../../redux/slices/User";
 
 const Signup = () => {
@@ -9,16 +8,19 @@ const Signup = () => {
   const [pass, setPass] = useState();
   const [userName, setUserName] = useState();
 
+
   const checkMail = (e) => {
     setMail(e.target.value);
   };
+
   const checkPass = (e) => {
     setPass(e.target.value);
   };
+
   const checkUsername = (e) => {
     setUserName(e.target.value);
   };
-  const userStates = useSelector((store) => store.user);
+
   const handleSubmit = () => {
     const bodyParamster = {
       mail: mail,
@@ -27,9 +29,10 @@ const Signup = () => {
     };
     dispatch(signUpUser(bodyParamster));
   };
+
   return (
     <div>
-      <h1>sign up</h1>
+      <h1>Sign up</h1>
       <input placeholder="username" type="text" onChange={checkUsername} />
       <input placeholder="passs" type="text" onChange={checkPass} />
       <input placeholder="mail" type="text" onChange={checkMail} />

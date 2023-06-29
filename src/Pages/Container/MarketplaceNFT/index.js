@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Layout, Modal, message } from "antd";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import LayOutAdmin, { Loading } from "../../Components";
 import ReactCanvasConfetti from 'react-canvas-confetti';
-import clientUtils from "../../../utils/client-utils";
-import PicDemoNft from "../../../assets/pic_avt_nft.png";
-import { SiderBar, HeaderApp, FooterApp } from "../../Components";
-import IconCheck from "../../../assets/icon_check_1.png";
-import IconWarning from "../../../assets/icon_warning.png";
-import "./style.scss";
+import { SiderBar, HeaderApp, FooterApp, Loading } from "../../Components";
+import { IconCheck, IconWarning } from "../../../assets";
 import constanDomain, { DOMAIN_API, PARAMS_LIST_MY_NTF, PUBLIC_SALE_NFT } from "../../../configs/constanDomain";
 import { requestGet, requestPost } from "../../../services/requestMethod";
+import "./style.scss";
 
 
 const { Content } = Layout;
 
 const MarketplaceNFT = () => {
-  let navigate = useNavigate();
   const key = 'updatable';
   const [visible, setVisible] = useState(false);
   const [visibleDone, setVisibleDone] = useState(false);
@@ -25,14 +18,12 @@ const MarketplaceNFT = () => {
   const [obItem, setObItem] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState();
   const [dataPage, setDataPage] = useState([]);
-  
 
 
   useEffect(() => {
     getData();
   }, []);
 
-  const states = useSelector((store) => store);
 
   const getData = async () => {
     setLoadingPage(true)
@@ -54,11 +45,8 @@ const MarketplaceNFT = () => {
       } else {
         setLoadingPage(false);
       }
-    } 
+    }
   };
-  function randomInRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
 
   const hideModal = () => {
     setVisible(false);
@@ -177,9 +165,9 @@ const MarketplaceNFT = () => {
                             <p className="item_description">{item.description}</p>
                             {
                               item.hasCheck === true ? <>
-                                <Button onClick={() => handleBuy(item)} type="primary" style={{marginTop: "10px", padding: "0px 45px", fontSize: "17px", fontWeight: "500"}}>Buy</Button>
+                                <Button onClick={() => handleBuy(item)} type="primary" style={{ marginTop: "10px", padding: "0px 45px", fontSize: "17px", fontWeight: "500" }}>Buy</Button>
                               </> : <>
-                                <Button type="primary" disabled style={{marginTop: "10px", padding: "0px 45px", fontSize: "17px", fontWeight: "500"}}>Received</Button>
+                                <Button type="primary" disabled style={{ marginTop: "10px", padding: "0px 45px", fontSize: "17px", fontWeight: "500" }}>Received</Button>
                               </>
                             }
                           </div>
@@ -201,19 +189,19 @@ const MarketplaceNFT = () => {
           width="500px"
           centered={true}
         >
-         <div>
+          <div>
             <div className="box_icon">
-              <img src={IconWarning} className="icon_warning"/>
+              <img src={IconWarning} className="icon_warning" />
             </div>
             <div>
               <p className="check_buy">Are you sure?</p>
               <p className="txt_suggest">Once purchased, this NFT will be in your NFT list</p>
             </div>
             <div className="footer_dialog_confimn">
-              <Button onClick={handleSubmitBuy} loading={loadingBtn} type="primary" style={{fontSize: "15px", fontWeight: "600"}}>Yes, buy it</Button>
-              <Button onClick={hideModal} type="primary" danger style={{fontSize: "15px", fontWeight: "600"}}>Cancel</Button>
+              <Button onClick={handleSubmitBuy} loading={loadingBtn} type="primary" style={{ fontSize: "15px", fontWeight: "600" }}>Yes, buy it</Button>
+              <Button onClick={hideModal} type="primary" danger style={{ fontSize: "15px", fontWeight: "600" }}>Cancel</Button>
             </div>
-         </div>
+          </div>
         </Modal>
         <Modal
           title={null}
@@ -223,18 +211,18 @@ const MarketplaceNFT = () => {
           width="500px"
           centered={true}
         >
-         <div>
+          <div>
             <div className="box_icon">
-              <img src={IconCheck} className="icon_warning"/>
+              <img src={IconCheck} className="icon_warning" />
             </div>
             <div>
               <p className="check_buy">Congratulations</p>
               <p className="txt_suggest">You have successfully purchased this NFT</p>
             </div>
             <div className="footer_dialog_confimn">
-              <Button onClick={hideModal} type="primary" danger style={{fontSize: "15px", fontWeight: "600"}}>Close</Button>
+              <Button onClick={hideModal} type="primary" danger style={{ fontSize: "15px", fontWeight: "600" }}>Close</Button>
             </div>
-         </div>
+          </div>
         </Modal>
         <ReactCanvasConfetti ref={confettiRef} />
         <FooterApp />

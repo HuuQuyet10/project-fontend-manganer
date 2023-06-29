@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Select } from "antd";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import clientUtils from "../../../utils/client-utils";
-import IconEth from "../../../assets/icon_eth.svg";
-import IconSong from "../../../assets/song.svg";
-import Icongold from "../../../assets/eth_gold.svg";
-import Iconblue from "../../../assets/eth_blue.svg";
-import PicChartDemo from "../../../assets/pic_chart_demo.png";
-import Iconred from "../../../assets/eth_red.svg";
+import { FieldTimeOutlined, MoneyCollectOutlined, TransactionOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { SiderBar, HeaderApp, FooterApp, ColumnChart, BreadcrumbC, Loading } from "../../Components";
 import constanDomain from "../../../configs/constanDomain";
 import { requestGet } from "../../../services/requestMethod";
-import "./style.scss";
-import { FieldTimeOutlined, MoneyCollectOutlined, TransactionOutlined } from "@ant-design/icons";
+import { IconEth, IconSong, Icongold, Iconblue, PicChartDemo, Iconred } from "../../../assets";
 import { priceETH } from "../../../utils/formatAllMethod";
+import "./style.scss";
 
 const { Content } = Layout;
 
@@ -24,6 +17,7 @@ const User = () => {
   const [dataListNft, setDataListNft] = useState([]);
   const [ethAmount, setEthAmount] = useState([]);
   const [itemDate, setItemDate] = useState('1m');
+
   useEffect(() => {
     getData();
     getListNftOwned();
@@ -57,6 +51,7 @@ const User = () => {
       }
     }
   };
+
   const getListNftOwned = async () => {
     setLoadingPage(true)
     try {
@@ -79,9 +74,11 @@ const User = () => {
       }
     }
   }
+
   const handleChange = (e) => {
     setItemDate(e);
   };
+
   return (
     <Layout hasSider>
       <SiderBar />
@@ -150,7 +147,7 @@ const User = () => {
                               return (
                                 <Link to={`/list-nft/update-nft/${item._id}`}>
                                   <a href={`/list-nft/update-nft/${item._id}`}>
-                                      <div className="item_nft_owned">
+                                    <div className="item_nft_owned">
                                       <div className="top_nft_owned">
                                         <p>{item.name}</p>
                                         <img src={IconSong} alt="icon_eth" />
@@ -176,7 +173,7 @@ const User = () => {
                           <div>
                             <div className="body_invest">
                               <div className="invest_icon">
-                                <TransactionOutlined style={{fontSize: "29px", color: "white"}}/>
+                                <TransactionOutlined style={{ fontSize: "29px", color: "white" }} />
                               </div>
                               <div className="invest_number">
                                 <p className="title_number_invest">Total Investement</p>
@@ -188,7 +185,7 @@ const User = () => {
                             </div>
                             <div className="body_invest">
                               <div className="invest_icon_time">
-                                <FieldTimeOutlined style={{fontSize: "29px", color: "white"}}/>
+                                <FieldTimeOutlined style={{ fontSize: "29px", color: "white" }} />
                               </div>
                               <div className="invest_number">
                                 <p className="title_number_invest">Total Investement</p>
@@ -200,7 +197,7 @@ const User = () => {
                             </div>
                             <div className="body_invest">
                               <div className="invest_icon_money">
-                                <MoneyCollectOutlined style={{fontSize: "29px", color: "white"}}/>
+                                <MoneyCollectOutlined style={{ fontSize: "29px", color: "white" }} />
                               </div>
                               <div className="invest_number">
                                 <p className="title_number_invest">Total Investement</p>
@@ -241,10 +238,37 @@ const User = () => {
                       <p className="title_top_picks">Top Picks</p>
                       <div>
                         <div className="body_top_picks">
-                          <p className="title_top_item">Roma Avenue</p>
+                          <p className="title_top_item">Azuki #2100</p>
                           <div className="item_targer_price">
-                            <p>$ 400,000</p>
-                            <p>0.0000345 Ether</p>
+                            <p>$ 1522,27</p>
+                            <p>0.8299931 Ether</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="body_top_picks">
+                          <p className="title_top_item">BeanZ #9329</p>
+                          <div className="item_targer_price">
+                            <p>$ 1410,88</p>
+                            <p>0.7644287 Ether</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="body_top_picks">
+                          <p className="title_top_item">Avenue Blue #9943</p>
+                          <div className="item_targer_price">
+                            <p>$ 948,63</p>
+                            <p>0.51100009 Ether</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="body_top_picks">
+                          <p className="title_top_item">Liqui Cool #9949</p>
+                          <div className="item_targer_price">
+                            <p>$ 915,06</p>
+                            <p>0.4929129 Ether</p>
                           </div>
                         </div>
                       </div>
@@ -252,35 +276,8 @@ const User = () => {
                         <div className="body_top_picks">
                           <p className="title_top_item">Roma Avenue</p>
                           <div className="item_targer_price">
-                            <p>$ 400,000</p>
-                            <p>0.0000345 Ether</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="body_top_picks">
-                          <p className="title_top_item">Roma Avenue</p>
-                          <div className="item_targer_price">
-                            <p>$ 400,000</p>
-                            <p>0.0000345 Ether</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="body_top_picks">
-                          <p className="title_top_item">Roma Avenue</p>
-                          <div className="item_targer_price">
-                            <p>$ 400,000</p>
-                            <p>0.0000345 Ether</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="body_top_picks">
-                          <p className="title_top_item">Roma Avenue</p>
-                          <div className="item_targer_price">
-                            <p>$ 400,000</p>
-                            <p>0.0000345 Ether</p>
+                            <p>$ 604,57</p>
+                            <p>0.3256660 Ether</p>
                           </div>
                         </div>
                       </div>

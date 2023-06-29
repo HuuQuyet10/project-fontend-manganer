@@ -4,7 +4,6 @@ import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../redux/slices/User";
-import clientUtils from "../../../utils/client-utils";
 import "../../../Styles/Login_page.scss"
 
 const Login = () => {
