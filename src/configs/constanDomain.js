@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    DOMAIN_API: "https://api-web-nodejs.onrender.com",
+    DOMAIN_API: "https://apienterprice-icddnszt.b4a.run",
     PARAMS_USER: {
         REGISTER: "/api/v1/user/register",
         LOGIN: "/api/v1/user/login",
